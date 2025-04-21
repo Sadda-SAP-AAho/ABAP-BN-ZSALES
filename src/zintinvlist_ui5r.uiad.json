@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Integration Invoices",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zintinvlist"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_48A9359F97CD7D3CC03D40B229227420E554C2A8_TM",
+    "semanticObject": "ZINTINTList",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_48A9359F97CD7D3CC03D40B229227420E554C2A8_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Integration Invoices",
+        "subtitle": "ZINTINVLIST"
+      }
+    }
+  ]
+}

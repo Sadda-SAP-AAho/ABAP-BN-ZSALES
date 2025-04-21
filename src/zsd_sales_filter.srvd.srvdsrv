@@ -1,0 +1,4 @@
+@EndUserText.label: 'Sales filter service definition'
+define service Zsd_sales_filter {
+  expose ZC_SALESFILTER;
+}

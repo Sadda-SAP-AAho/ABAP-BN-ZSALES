@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Invoice Master Filter",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zsalesfilter"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_6F5AC500537D172604107269800FB562CE8EA1C3_TM",
+    "semanticObject": "zsales_filter",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_6F5AC500537D172604107269800FB562CE8EA1C3_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Invoice Master Filter",
+        "subtitle": "zinvmstfilter"
+      }
+    }
+  ]
+}

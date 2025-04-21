@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_CUSTCONTROLSHT'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_CUSTCONTROLSHT'
+  }
+}
+define service ZUI_CUSTCONTROLSHT_O4 provider contracts odata_v4_ui {
+  expose ZC_CUSTCONTROLSHT;
+}

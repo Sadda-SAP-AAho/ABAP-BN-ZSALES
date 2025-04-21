@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for ECMS'
+define service ZSD_ECMS {
+  expose ZI_ECMS;
+}

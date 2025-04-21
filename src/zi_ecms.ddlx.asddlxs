@@ -1,0 +1,57 @@
+@Metadata.layer: #PARTNER
+@UI: {
+headerInfo: { typeName: 'ECMS',
+               typeNamePlural: 'ECMS',
+               title: { type: #STANDARD, label: 'ECMS', value: 'Transactionid' }
+                            }
+}
+
+annotate view ZI_ECMS
+    with 
+    
+{
+    @UI.facet: [{ id: 'Transactionid' ,
+                  purpose: #STANDARD,
+                  type: #IDENTIFICATION_REFERENCE,
+                  label: 'transactionid',
+                  position: 1
+    }]
+     @UI: { lineItem:[ { position:8, label:'ID' } ],
+           identification: [ { position:8, label : 'ID' } ]
+    }
+    ID;
+    @UI: { lineItem:[ { position:10, label:'Transactionid' } ],
+           identification: [ { position:10, label : 'Transactionid' } ]
+    }
+    Transactionid;
+    
+        @UI: { lineItem:[ { position:20, label:'Remittername' } ],
+           identification: [ { position:20, label : 'Remittername' } ]
+    }
+    Remittername;
+    
+        @UI: { lineItem:[ { position:30, label:'Fromaccountnumber' } ],
+           identification: [ { position:30, label : 'Fromaccountnumber' } ]
+    }
+    Fromaccountnumber;
+        
+        @UI: { lineItem:[ { position:40, label:'Frombankname' } ],
+           identification: [ { position:40, label : 'Frombankname' } ]
+    }
+    Frombankname;
+        
+        @UI: { lineItem:[ { position:50, label:'Utr' } ],
+           identification: [ { position:50, label : 'Utr' } ]
+    }
+    Utr;
+        
+        @UI: { lineItem:[ { position:60, label:'Virtualaccount' } ],
+           identification: [ { position:60, label : 'Virtualaccount' } ]
+    }
+    Virtualaccount;
+        
+        @UI: { lineItem:[ { position:70, label:'Amount' } ],
+           identification: [ { position:70, label : 'Amount' } ]
+    }
+    Amount;
+}

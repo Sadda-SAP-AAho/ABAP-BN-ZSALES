@@ -1,0 +1,10 @@
+projection;
+strict;
+
+define behavior for ZC_SALESFILTER alias Filter
+use etag
+{
+  use create;
+  use update;
+  use delete;
+}

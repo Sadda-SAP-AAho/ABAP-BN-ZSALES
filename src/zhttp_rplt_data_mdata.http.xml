@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_HTTP" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <HTTPID>ZHTTP_RPLT_DATA_MDATA</HTTPID>
+   <HTTPTEXT>
+    <ID>ZHTTP_RPLT_DATA_MDATA</ID>
+    <VERSION>I</VERSION>
+    <LANG>E</LANG>
+    <SHORTTEXT>Http of RPLT_DATADATA And ZRPL_TDATA_M_TAB</SHORTTEXT>
+   </HTTPTEXT>
+   <HTTPHDL>
+    <UCONSERVHANDLER>
+     <ID>ZHTTP_RPLT_DATA_MDATA</ID>
+     <VERSION>I</VERSION>
+     <SERVICEORDER>01</SERVICEORDER>
+     <SERVICEHANDLER>ZCL_HTTP_RPLT_DATA_MDATA</SERVICEHANDLER>
+    </UCONSERVHANDLER>
+   </HTTPHDL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

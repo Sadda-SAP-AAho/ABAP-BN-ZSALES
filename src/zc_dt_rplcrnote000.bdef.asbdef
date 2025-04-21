@@ -1,0 +1,17 @@
+projection implementation in class ZBP_C_DT_RPLCRNOTE000 unique;
+strict ( 2 );
+use draft;
+define behavior for ZC_DT_RPLCRNOTE000 alias ZcDtRplcrnote000
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

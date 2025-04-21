@@ -1,0 +1,16 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job for posting dealer amt rcvd and expenses of sales person",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_GLACCOUNTPOSTING"
+  },
+  "parameters": [
+    {
+      "name": "P_DESCR"
+    }
+  ]
+}

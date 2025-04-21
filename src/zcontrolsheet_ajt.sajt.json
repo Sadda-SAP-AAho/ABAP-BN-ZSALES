@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job for dealer amt rcvd and expenses of Sales Person posting",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZCONTROLSHEET_AJCE"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_DESCR",
+        "value": "Create Interbranch PO"
+      }
+    ]
+  }
+}

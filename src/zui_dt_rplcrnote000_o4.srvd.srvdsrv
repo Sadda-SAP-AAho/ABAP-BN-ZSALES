@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_DT_RPLCRNOTE000'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_DT_RPLCRNOTE000'
+  }
+}
+define service ZUI_DT_RPLCRNOTE000_O4 provider contracts odata_v4_ui {
+  expose ZC_DT_RPLCRNOTE000;
+}

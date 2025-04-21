@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Job Template for posting SCRAP Posting",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZREPLCRNOTE_AJCE"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_DESCR",
+        "value": "Post Material Variance"
+      }
+    ]
+  }
+}

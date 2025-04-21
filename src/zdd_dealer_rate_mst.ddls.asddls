@@ -1,0 +1,41 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'app order master data data definition'
+@Metadata.ignorePropagatedAnnotations: true
+define root view entity zdd_dealer_rate_mst as select from zdealer_ratemst1
+{
+    key drdealercode as Drdealercode,
+    key drprdcode as Drprdcode,
+    key comp_code as CompCode,
+    key plant as Plant,
+    drprdrate as Drprdrate,
+    drprdrplratio as Drprdrplratio,
+    drusername as Drusername,
+    drprdmop as Drprdmop,
+    drprdsdr as Drprdsdr,
+    drprdwsb as Drprdwsb,
+    drprdrdc as Drprdrdc,
+    drprdwsb1 as Drprdwsb1,
+    drprdwsb2 as Drprdwsb2,
+    drprdwsb3 as Drprdwsb3,
+    drupdt as Drupdt,
+    drid as Drid,
+    drprdrdc1 as Drprdrdc1,
+    drprdrplratio1 as Drprdrplratio1,
+    drrateapcbfrom as Drrateapcbfrom,
+    drstatus as Drstatus,
+    docdealerloc as Docdealerloc,
+    drdocno as Drdocno,
+    drdocdate as Drdocdate,
+    drreplrate1 as Drreplrate1,
+    drremarks as Drremarks,
+    dronbillos as Dronbillos,
+    droffbillos as Droffbillos,
+    droffbillcrdo as Droffbillcrdo,
+    drtgtqty as Drtgtqty,
+    drprdmrp as Drprdmrp,
+    created_by as CreatedBy,
+    created_at as CreatedAt,
+    last_changed_by as LastChangedBy,
+    last_changed_at as LastChangedAt,
+    local_last_changed_at as LocalLastChangedAt
+}

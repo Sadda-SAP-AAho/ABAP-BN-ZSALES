@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Integration Invoice Analysis",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zinvgrouped"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_45D89EF8AA7CDCD8461586A348E6C70915231207_TM",
+    "semanticObject": "ZINTINVANALYSIS",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_45D89EF8AA7CDCD8461586A348E6C70915231207_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Integration Invoice Analysis",
+        "subtitle": "ZINTINVANALYSIS"
+      }
+    }
+  ]
+}

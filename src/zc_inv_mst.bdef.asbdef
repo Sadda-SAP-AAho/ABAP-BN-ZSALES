@@ -1,0 +1,12 @@
+projection;
+strict;
+define behavior for ZC_INV_MST alias ZcInvMst
+{
+  use action clearProcessing;
+  use association _Lines { create; }
+}
+
+define behavior for ZC_INVOICEDATATAB1 alias ZrInvoicedatatab1
+{
+ use association _Header;
+}

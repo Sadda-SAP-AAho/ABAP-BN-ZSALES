@@ -1,0 +1,46 @@
+managed implementation in class zbp_i_ecms unique;
+strict ( 2 );
+
+define behavior for ZI_ECMS alias I_ECMS
+persistent table zecms_tab
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  field( readonly : update )
+    id,
+    transactionid,
+    Comp_code;
+
+  create;
+  update;
+  delete;
+  field ( mandatory ) remittername, fromaccountnumber;
+
+  validation validatekey on save
+  {
+    field Transactionid, Remittername, Fromaccountnumber; create;
+  }
+
+  mapping for zecms_tab
+    {
+      ID                = id;
+      Transactionid     = transactionid;
+      Comp_code         = COMP_CODE;
+      Remittername      = remittername;
+      Fromaccountnumber = fromaccountnumber;
+      Frombankname      = frombankname;
+      Utr               = utr;
+      Virtualaccount    = virtualaccount;
+      Amount            = amount;
+      Transfermode      = TRANSFERMODE;
+      Creditdatetime    = CREDITDATETIME;
+      Ipfrom            = IPFROM;
+      createon          = CREATEON;
+      error_log         = ERROR_LOG;
+      remarks           = Remarks;
+      processed         = Processed;
+      reference_doc     = Reference_Doc;
+
+    }
+}

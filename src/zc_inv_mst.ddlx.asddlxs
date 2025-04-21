@@ -1,0 +1,535 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Invoice Header', 
+    typeNamePlural: 'Invoice Headers', 
+    title: {
+      type: #STANDARD, 
+      label: 'Invoice Header', 
+      value: 'Imno'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'Imno', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+
+annotate view ZC_INV_MST with
+{
+  @EndUserText.label: 'Company Code'
+  
+   @UI.facet: [ {
+    id: 'idCollection', 
+    type: #COLLECTION, 
+    label: 'Invoice Header', 
+    position: 10 
+  }, 
+  {
+    id: 'idIdentification', 
+    parentId: 'idCollection', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'General Information', 
+    position: 20 
+  }, {
+    id: 'idGateEntryLines', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Lines', 
+    position: 30 , 
+    targetElement: '_Lines'
+  } ]
+  
+ 
+  @UI.identification: [{
+    position: 10 , 
+      label: 'Clear Processing',
+      type: #FOR_ACTION,
+      dataAction: 'clearProcessing',
+      invocationGrouping: #CHANGE_SET,
+    importance: #HIGH
+  }, {
+    position: 10 , 
+    label: 'Company Code'
+  } ]
+  @UI.lineItem: [{
+    position: 10 , 
+      label: 'Clear Processing',
+      type: #FOR_ACTION,
+      dataAction: 'clearProcessing',
+      invocationGrouping: #CHANGE_SET,
+    importance: #HIGH
+  }, {
+    position: 10 , 
+    label: 'Company Code'
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+   @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CompanyCodeSTDVH', element: 'CompanyCode' } }]
+  CompCode;
+  
+  @EndUserText.label: 'Plant'
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Plant'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 , 
+    label: 'Plant'
+  } ]
+   @UI.selectionField: [{ position: 10 , element: 'Plant' }]
+   @Consumption.valueHelpDefinition: [{ entity:{ element: 'Plant' ,name: 'I_PlantStdVH'} }]
+  Plant;
+  
+  @EndUserText.label: 'Imfyear'
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'Imfyear'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 , 
+    label: 'Imfyear'
+  } ]
+  Imfyear;
+  
+  @EndUserText.label: 'Imtype'
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Imtype'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 , 
+    label: 'Imtype'
+  } ]
+  Imtype;
+  
+  @EndUserText.label: 'Imno'
+  @UI.identification: [ {
+    position: 50 , 
+    label: 'Imno'
+  } ]
+  @UI.lineItem: [ {
+    position: 50 , 
+    label: 'Imno'
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  Imno;
+  
+  @EndUserText.label: 'Imnoseries'
+  @UI.identification: [ {
+    position: 60 , 
+    label: 'Imnoseries'
+  } ]
+  @UI.lineItem: [ {
+    position: 60 , 
+    label: 'Imnoseries'
+  } ]
+  Imnoseries;
+  
+  @EndUserText.label: 'Imcat'
+  @UI.identification: [ {
+    position: 70 , 
+    label: 'Imcat'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 , 
+    label: 'Imcat'
+  } ]
+  Imcat;
+  
+  @EndUserText.label: 'Imdate'
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'Imdate'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 , 
+    label: 'Imdate'
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  Imdate;
+  
+  @EndUserText.label: 'Imsalesmancode'
+  @UI.identification: [ {
+    position: 90 , 
+    label: 'Imsalesmancode'
+  } ]
+  @UI.lineItem: [ {
+    position: 90 , 
+    label: 'Imsalesmancode'
+  } ]
+  Imsalesmancode;
+  
+  @EndUserText.label: 'Impartycode'
+  @UI.identification: [ {
+    position: 100 , 
+    label: 'Impartycode'
+  } ]
+  @UI.lineItem: [ {
+    position: 100 , 
+    label: 'Impartycode'
+  } ]
+  Impartycode;
+  
+@UI.hidden: true
+  Imroutecode;
+  
+@UI.hidden: true
+  Imvehcode;
+  
+@UI.hidden: true
+  Imtransname;
+  
+@UI.hidden: true
+  Imgrno;
+  
+@UI.hidden: true
+  Imgrdate;
+  
+  @EndUserText.label: 'Imremarks'
+  @UI.identification: [ {
+    position: 160 , 
+    label: 'Imremarks'
+  } ]
+  Imremarks;
+  
+  @EndUserText.label: 'Imtotqty'
+  @UI.identification: [ {
+    position: 170 , 
+    label: 'Imtotqty'
+  } ]
+  @UI.lineItem: [ {
+    position: 170 , 
+    label: 'Imtotqty'
+  } ]
+  Imtotqty;
+  
+@UI.hidden: true
+  Imgrswgt;
+  
+@UI.hidden: true
+  Imvogamt;
+  
+@UI.hidden: true
+  Imtxbamt;
+  
+  @EndUserText.label: 'Imnetamt'
+  @UI.identification: [ {
+    position: 210 , 
+    label: 'Imnetamt'
+  } ]
+  @UI.lineItem: [ {
+    position: 210 , 
+    label: 'Imnetamt'
+  } ]
+  Imnetamt;
+  
+@UI.hidden: true
+  Imnetamtro;
+  
+@UI.hidden: true
+  Imcrates1;
+  
+@UI.hidden: true
+  Imcrates2;
+  
+@UI.hidden: true
+  Imrcds;
+  
+@UI.hidden: true
+  Imdeltag;
+  
+@UI.hidden: true
+  Imusercode;
+  
+@UI.hidden: true
+  Imdfdt;
+  
+@UI.hidden: true
+  Imdudt;
+  
+@UI.hidden: true
+  Imaid;
+  
+@UI.hidden: true
+  Imlocktag;
+  
+@UI.hidden: true
+  Imdespatchtag;
+  
+@UI.hidden: true
+  Imsumno;
+  
+@UI.hidden: true
+  Imcrates3;
+  
+@UI.hidden: true
+  Imcrates4;
+  
+  @EndUserText.label: 'Imorderno'
+  @UI.identification: [ {
+    position: 360 , 
+    label: 'Imorderno'
+  } ]
+  @UI.lineItem: [ {
+    position: 360 , 
+    label: 'Imorderno'
+  } ]
+  Imorderno;
+  
+@UI.hidden: true
+  Imprintedon;
+  
+@UI.hidden: true
+  Imprintedby;
+  
+  @EndUserText.label: 'Imsaledate'
+  @UI.identification: [ {
+    position: 390 , 
+    label: 'Imsaledate'
+  } ]
+  Imsaledate;
+  
+@UI.hidden: true
+  Imddealercode;
+  
+  @EndUserText.label: 'Imcgstamt'
+  @UI.identification: [ {
+    position: 410 , 
+    label: 'Imcgstamt'
+  } ]
+  Imcgstamt;
+  
+  @EndUserText.label: 'Imsgstamt'
+  @UI.identification: [ {
+    position: 420 , 
+    label: 'Imsgstamt'
+  } ]
+  Imsgstamt;
+  
+  @EndUserText.label: 'Imigstamt'
+  @UI.identification: [ {
+    position: 430 , 
+    label: 'Imigstamt'
+  } ]
+  Imigstamt;
+  
+  @EndUserText.label: 'Imdealercode'
+  @UI.identification: [ {
+    position: 440 , 
+    label: 'Imdealercode'
+  } ]
+  Imdealercode;
+  
+@UI.hidden: true
+  Imvroutecode;
+  
+@UI.hidden: true
+  Imewaybillno;
+  
+@UI.hidden: true
+  Imewaybilltag;
+  
+@UI.hidden: true
+  Imewaybilldate;
+  
+@UI.hidden: true
+  Imdeviceid;
+  
+@UI.hidden: true
+  Imver;
+  
+@UI.hidden: true
+  Imsscode;
+  
+  @EndUserText.label: 'Imempcode'
+  @UI.identification: [ {
+    position: 520 , 
+    label: 'Imempcode'
+  } ]
+
+  Imempcode;
+  
+@UI.hidden: true
+  Imewaystatus;
+  
+@UI.hidden: true
+  Imirnstatus;
+  
+@UI.hidden: true
+  Imdealergstno;
+  
+@UI.hidden: true
+  Imsuptype;
+  
+@UI.hidden: true
+  Imminno;
+  
+@UI.hidden: true
+  Immindt;
+  
+  @EndUserText.label: 'Scrapbill'
+  @UI.identification: [ {
+    position: 590 , 
+    label: 'Scrapbill'
+  } ]
+
+  Scrapbill;
+  
+  @EndUserText.label: 'Imcmpcode'
+  @UI.identification: [ {
+    position: 600 , 
+    label: 'Imcmpcode'
+  } ]
+
+  Imcmpcode;
+  
+@UI.hidden: true
+  
+  ErrorLog;
+  
+@UI.hidden: true
+  Remarks;
+  
+  @EndUserText.label: 'Processed'
+  @UI.identification: [ {
+    position: 630 , 
+    label: 'Processed'
+  } ]
+  @UI.lineItem: [ {
+    position: 630 , 
+    label: 'Processed'
+  } ]
+  Processed;
+  
+  @EndUserText.label: 'ReferenceDoc'
+  @UI.identification: [ {
+    position: 640 , 
+    label: 'ReferenceDoc'
+  } ]
+  @UI.lineItem: [ {
+    position: 640 , 
+    label: 'ReferenceDoc'
+  } ]
+  ReferenceDoc;
+  
+  @EndUserText.label: 'Orderamount'
+  @UI.identification: [ {
+    position: 650 , 
+    label: 'Orderamount'
+  } ]
+  Orderamount;
+  
+  @EndUserText.label: 'ReferenceDocDel'
+  @UI.identification: [ {
+    position: 660 , 
+    label: 'ReferenceDocDel'
+  } ]
+  @UI.lineItem: [ {
+    position: 660 , 
+    label: 'ReferenceDocDel'
+  } ]
+  ReferenceDocDel;
+  
+  @EndUserText.label: 'ReferenceDocInvoice'
+  @UI.identification: [ {
+    position: 670 , 
+    label: 'ReferenceDocInvoice'
+  } ]
+  @UI.lineItem: [ {
+    position: 670 , 
+    label: 'ReferenceDocInvoice'
+  } ]
+  ReferenceDocInvoice;
+  
+  @EndUserText.label: 'Invoiceamount'
+  @UI.identification: [ {
+    position: 680 , 
+    label: 'Invoiceamount'
+  } ]
+  Invoiceamount;
+  
+  @EndUserText.label: 'Status'
+  @UI.identification: [ {
+    position: 690 , 
+    label: 'Status'
+  } ]
+  @UI.lineItem: [ {
+    position: 690 , 
+    label: 'Status'
+  } ]
+  Status;
+  
+@UI.hidden: true
+  CreatedBy;
+  
+  @UI.hidden: true
+  LastChangedBy;
+  
+@UI.hidden: true
+  CustCode;
+  
+  @EndUserText.label: 'PoTobeCreated'
+  @UI.identification: [ {
+    position: 750 , 
+    label: 'PoTobeCreated'
+  } ]
+  @UI.lineItem: [ {
+    position: 750 , 
+    label: 'PoTobeCreated'
+  } ]
+  PoTobeCreated;
+  
+  @EndUserText.label: 'PoProcessed'
+  @UI.identification: [ {
+    position: 760 , 
+    label: 'PoProcessed'
+  } ]
+  @UI.lineItem: [ {
+    position: 760 , 
+    label: 'PoProcessed'
+  } ]
+  PoProcessed;
+  
+  @EndUserText.label: 'PoNo'
+  @UI.identification: [ {
+    position: 770 , 
+    label: 'PoNo'
+  } ]
+  @UI.lineItem: [ {
+    position: 770 , 
+    label: 'PoNo'
+  } ]
+  PoNo;
+  
+  @EndUserText.label: 'MigoProcessed'
+  @UI.identification: [ {
+    position: 780 , 
+    label: 'MigoProcessed'
+  } ]
+  @UI.lineItem: [ {
+    position: 780 , 
+    label: 'MigoProcessed'
+  } ]
+  MigoProcessed;
+  
+  @EndUserText.label: 'MigoNo'
+  @UI.identification: [ {
+    position: 790 , 
+    label: 'MigoNo'
+  } ]
+  @UI.lineItem: [ {
+    position: 790 , 
+    label: 'MigoNo'
+  } ]
+  MigoNo;
+}

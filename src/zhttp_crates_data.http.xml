@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_HTTP" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <HTTPID>ZHTTP_CRATES_DATA</HTTPID>
+   <HTTPTEXT>
+    <ID>ZHTTP_CRATES_DATA</ID>
+    <VERSION>A</VERSION>
+    <LANG>E</LANG>
+    <SHORTTEXT>http class for crates data</SHORTTEXT>
+   </HTTPTEXT>
+   <HTTPHDL>
+    <UCONSERVHANDLER>
+     <ID>ZHTTP_CRATES_DATA</ID>
+     <VERSION>A</VERSION>
+     <SERVICEORDER>01</SERVICEORDER>
+     <SERVICEHANDLER>ZCL_CRATES_DATA</SERVICEHANDLER>
+    </UCONSERVHANDLER>
+   </HTTPHDL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Crates Data Rap",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "zcrate"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_BDF0EFB861EF4953EE089973B2F65A5D02ACECFC_TM",
+    "semanticObject": "zcrates",
+    "action": "Display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_BDF0EFB861EF4953EE089973B2F65A5D02ACECFC_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Crates Data Rap",
+        "subtitle": "zcratesdata"
+      }
+    }
+  ]
+}

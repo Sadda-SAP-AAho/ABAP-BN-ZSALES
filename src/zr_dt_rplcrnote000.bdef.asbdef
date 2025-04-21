@@ -1,0 +1,76 @@
+managed implementation in class ZBP_R_DT_RPLCRNOTE000 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_DT_RPLCRNOTE000 alias ZrDtRplcrnote000
+persistent table ZDT_RPLCRNOTE
+draft table ZDT_RPLCRNT000_D
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   Imfyear,
+   Imtype,
+   Imnoseries,
+   CompCode,
+   Imno,
+   Imdealercode,
+   Implant;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( readonly : update )
+   Imfyear,
+   Imtype,
+   Imnoseries,
+   CompCode,
+   Imno,
+   Imdealercode,
+   Implant;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZDT_RPLCRNOTE
+  {
+    Imfyear = imfyear;
+    Imtype = imtype;
+    Imnoseries = imnoseries;
+    CompCode = comp_code;
+    Imno = imno;
+    Imdealercode = imdealercode;
+    Implant = implant;
+    Location = location;
+    Imdate = imdate;
+    Imdoccatg = imdoccatg;
+    Imcramt = imcramt;
+    Imbreadcode = imbreadcode;
+    Imwrappercode = imwrappercode;
+    Imbreadwt = imbreadwt;
+    Imwrapperwt = imwrapperwt;
+    Imfeddt = imfeddt;
+    Imfebuser = imfebuser;
+    Imstatus = imstatus;
+    ErrorLog = error_log;
+    Processed = processed;
+    Dealercrdoc = dealercrdoc;
+    Scrapindoc = scrapindoc;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

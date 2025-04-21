@@ -1,0 +1,16 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Applicate Job for Scrap GL posting",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZCL_RPLCNGLPOST"
+  },
+  "parameters": [
+    {
+      "name": "P_DESCR"
+    }
+  ]
+}

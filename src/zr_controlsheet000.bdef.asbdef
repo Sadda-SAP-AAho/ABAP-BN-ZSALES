@@ -1,0 +1,65 @@
+managed implementation in class ZBP_R_CONTROLSHEET000 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_CONTROLSHEET000 alias ZrControlsheet000
+persistent table ZCONTROLSHEET
+draft table zcntrlsheet000_d
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   GateEntryNo,
+   Plant,
+   CompCode,
+   Imfyear;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( readonly : update )
+   GateEntryNo,
+   Plant,
+   CompCode,
+   Imfyear;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCONTROLSHEET
+  {
+    GateEntryNo = gate_entry_no;
+    Vehiclenum = vehiclenum;
+    CompCode = comp_code;
+    Imfyear = imfyear;
+    Gpdate = gpdate;
+    Controlsheet = controlsheet;
+    Toll = toll;
+    GLPosted = glposted;
+    Routeexp = routeexp;
+    Cngexp = cngexp;
+    Other = other;
+    Dieselexp = dieselexp;
+    Repair = repair;
+    Plant = plant;
+    CostCenter = cost_center;
+    SalesPerson = sales_person;
+    PostedInd = posted_ind;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

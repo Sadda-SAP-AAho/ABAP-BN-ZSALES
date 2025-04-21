@@ -1,0 +1,93 @@
+managed implementation in class ZBP_R_CRATESDATA unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_CRATESDATA alias ZrCratesdata
+persistent table ZCRATESDATA
+draft table ZCRATESDATA_D
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+//  field ( mandatory : create )
+//   Cmno,
+//   CompCode,
+//   Plant,
+//   Cmfyear,
+//   Cmtype;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+//  field ( readonly : update )
+//   Cmno,
+//   CompCode,
+//   Plant,
+//   Cmfyear,
+//   Cmtype;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCRATESDATA
+  {
+    Cmno = cmno;
+    CompCode = comp_code;
+    Plant = plant;
+    Cmfyear = cmfyear;
+    Cmtype = cmtype;
+    Cmaid = cmaid;
+    Cmnoseries = cmnoseries;
+    Cmdate = cmdate;
+    Cmsalesmancode = cmsalesmancode;
+    Cmsalesmancodeorg = cmsalesmancodeorg;
+    Cmcrates1 = cmcrates1;
+    Cmcrates2 = cmcrates2;
+    Cmremarks = cmremarks;
+    Cmdeltag = cmdeltag;
+    Cmusercode = cmusercode;
+    Cmfeddt = cmfeddt;
+    Cmupddt = cmupddt;
+    Cmcrates11 = cmcrates11;
+    Cmcrates21 = cmcrates21;
+    Cmrefno = cmrefno;
+    Cmroutecd = cmroutecd;
+    Cmcrates3 = cmcrates3;
+    Cmcrates4 = cmcrates4;
+    Cmddealercode = cmddealercode;
+    Cmgpno = cmgpno;
+    Cmgpdate = cmgpdate;
+    Cmseries = cmseries;
+    Cmcrates1d = cmcrates1d;
+    Cmcrates2d = cmcrates2d;
+    Cmcrates3d = cmcrates3d;
+    Cmcrates4d = cmcrates4d;
+    Cmupuser = cmupuser;
+    Cmcratesrate1 = cmcratesrate1;
+    Cmcratesrate2 = cmcratesrate2;
+    Cmcratesrate3 = cmcratesrate3;
+    Cmcratesrate4 = cmcratesrate4;
+    Cmsecuritytype = cmsecuritytype;
+    Cmcmptype = cmcmptype;
+    ErrorLog = error_log;
+    Remarks = remarks;
+    Processed = processed;
+    ReferenceDoc = reference_doc;
+    Movementposted = movementposted;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

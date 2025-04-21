@@ -1,0 +1,366 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'Imfyear'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'Imfyear'
+annotate view ZC_DT_RPLCRNOTE000 with
+{
+  @EndUserText.label: 'Imfyear'
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: 'Imfyear'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    label: 'Imfyear'
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  Imfyear;
+  
+  @EndUserText.label: 'Imtype'
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Imtype'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 , 
+    label: 'Imtype'
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  Imtype;
+  
+  @EndUserText.label: 'Imnoseries'
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'Imnoseries'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 , 
+    label: 'Imnoseries'
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  Imnoseries;
+  
+  @EndUserText.label: 'CompCode'
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'CompCode'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 , 
+    label: 'CompCode'
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  CompCode;
+  
+  @EndUserText.label: 'Imno'
+  @UI.identification: [ {
+    position: 50 , 
+    label: 'Imno'
+  } ]
+  @UI.lineItem: [ {
+    position: 50 , 
+    label: 'Imno'
+  } ]
+  @UI.selectionField: [ {
+    position: 50 
+  } ]
+  Imno;
+  
+  @EndUserText.label: 'Imdealercode'
+  @UI.identification: [ {
+    position: 60 , 
+    label: 'Imdealercode'
+  } ]
+  @UI.lineItem: [ {
+    position: 60 , 
+    label: 'Imdealercode'
+  } ]
+  @UI.selectionField: [ {
+    position: 60 
+  } ]
+  Imdealercode;
+  
+  @EndUserText.label: 'Implant'
+  @UI.identification: [ {
+    position: 70 , 
+    label: 'Implant'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 , 
+    label: 'Implant'
+  } ]
+  @UI.selectionField: [ {
+    position: 70 
+  } ]
+  Implant;
+  
+  @EndUserText.label: 'Location'
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'Location'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 , 
+    label: 'Location'
+  } ]
+  @UI.selectionField: [ {
+    position: 80 
+  } ]
+  Location;
+  
+  @EndUserText.label: 'Imdate'
+  @UI.identification: [ {
+    position: 90 , 
+    label: 'Imdate'
+  } ]
+  @UI.lineItem: [ {
+    position: 90 , 
+    label: 'Imdate'
+  } ]
+  @UI.selectionField: [ {
+    position: 90 
+  } ]
+  Imdate;
+  
+  @EndUserText.label: 'Imdoccatg'
+  @UI.identification: [ {
+    position: 100 , 
+    label: 'Imdoccatg'
+  } ]
+  @UI.lineItem: [ {
+    position: 100 , 
+    label: 'Imdoccatg'
+  } ]
+  @UI.selectionField: [ {
+    position: 100 
+  } ]
+  Imdoccatg;
+  
+  @EndUserText.label: 'Imcramt'
+  @UI.identification: [ {
+    position: 110 , 
+    label: 'Imcramt'
+  } ]
+  @UI.lineItem: [ {
+    position: 110 , 
+    label: 'Imcramt'
+  } ]
+  @UI.selectionField: [ {
+    position: 110 
+  } ]
+  Imcramt;
+  
+  @EndUserText.label: 'Imbreadcode'
+  @UI.identification: [ {
+    position: 120 , 
+    label: 'Imbreadcode'
+  } ]
+  @UI.lineItem: [ {
+    position: 120 , 
+    label: 'Imbreadcode'
+  } ]
+  @UI.selectionField: [ {
+    position: 120 
+  } ]
+  Imbreadcode;
+  
+  @EndUserText.label: 'Imwrappercode'
+  @UI.identification: [ {
+    position: 130 , 
+    label: 'Imwrappercode'
+  } ]
+  @UI.lineItem: [ {
+    position: 130 , 
+    label: 'Imwrappercode'
+  } ]
+  @UI.selectionField: [ {
+    position: 130 
+  } ]
+  Imwrappercode;
+  
+  @EndUserText.label: 'Imbreadwt'
+  @UI.identification: [ {
+    position: 140 , 
+    label: 'Imbreadwt'
+  } ]
+  @UI.lineItem: [ {
+    position: 140 , 
+    label: 'Imbreadwt'
+  } ]
+  @UI.selectionField: [ {
+    position: 140 
+  } ]
+  Imbreadwt;
+  
+  @EndUserText.label: 'Imwrapperwt'
+  @UI.identification: [ {
+    position: 150 , 
+    label: 'Imwrapperwt'
+  } ]
+  @UI.lineItem: [ {
+    position: 150 , 
+    label: 'Imwrapperwt'
+  } ]
+  @UI.selectionField: [ {
+    position: 150 
+  } ]
+  Imwrapperwt;
+  
+  @EndUserText.label: 'Imfeddt'
+  @UI.identification: [ {
+    position: 160 , 
+    label: 'Imfeddt'
+  } ]
+  @UI.lineItem: [ {
+    position: 160 , 
+    label: 'Imfeddt'
+  } ]
+  @UI.selectionField: [ {
+    position: 160 
+  } ]
+  Imfeddt;
+  
+  @EndUserText.label: 'Imfebuser'
+  @UI.identification: [ {
+    position: 170 , 
+    label: 'Imfebuser'
+  } ]
+  @UI.lineItem: [ {
+    position: 170 , 
+    label: 'Imfebuser'
+  } ]
+  @UI.selectionField: [ {
+    position: 170 
+  } ]
+  Imfebuser;
+  
+  @EndUserText.label: 'Imstatus'
+  @UI.identification: [ {
+    position: 180 , 
+    label: 'Imstatus'
+  } ]
+  @UI.lineItem: [ {
+    position: 180 , 
+    label: 'Imstatus'
+  } ]
+  @UI.selectionField: [ {
+    position: 180 
+  } ]
+  Imstatus;
+  
+  @EndUserText.label: 'ErrorLog'
+  @UI.identification: [ {
+    position: 190 , 
+    label: 'ErrorLog'
+  } ]
+  @UI.lineItem: [ {
+    position: 190 , 
+    label: 'ErrorLog'
+  } ]
+  @UI.selectionField: [ {
+    position: 190 
+  } ]
+  ErrorLog;
+  
+  @EndUserText.label: 'Processed'
+  @UI.identification: [ {
+    position: 200 , 
+    label: 'Processed'
+  } ]
+  @UI.lineItem: [ {
+    position: 200 , 
+    label: 'Processed'
+  } ]
+  @UI.selectionField: [ {
+    position: 200 
+  } ]
+  Processed;
+  
+  @EndUserText.label: 'Dealercrdoc'
+  @UI.identification: [ {
+    position: 210 , 
+    label: 'Dealercrdoc'
+  } ]
+  @UI.lineItem: [ {
+    position: 210 , 
+    label: 'Dealercrdoc'
+  } ]
+  @UI.selectionField: [ {
+    position: 210 
+  } ]
+  Dealercrdoc;
+  
+  @EndUserText.label: 'Scrapindoc'
+  @UI.identification: [ {
+    position: 220 , 
+    label: 'Scrapindoc'
+  } ]
+  @UI.lineItem: [ {
+    position: 220 , 
+    label: 'Scrapindoc'
+  } ]
+  @UI.selectionField: [ {
+    position: 220 
+  } ]
+  Scrapindoc;
+  
+  @UI.identification: [ {
+    position: 230 
+  } ]
+  @UI.lineItem: [ {
+    position: 230 
+  } ]
+  @UI.selectionField: [ {
+    position: 230 
+  } ]
+  CreatedBy;
+  
+  @UI.identification: [ {
+    position: 240 
+  } ]
+  @UI.lineItem: [ {
+    position: 240 
+  } ]
+  @UI.selectionField: [ {
+    position: 240 
+  } ]
+  CreatedAt;
+  
+  @UI.identification: [ {
+    position: 250 
+  } ]
+  @UI.lineItem: [ {
+    position: 250 
+  } ]
+  @UI.selectionField: [ {
+    position: 250 
+  } ]
+  LastChangedBy;
+  
+  @UI.identification: [ {
+    position: 260 
+  } ]
+  @UI.lineItem: [ {
+    position: 260 
+  } ]
+  @UI.selectionField: [ {
+    position: 260 
+  } ]
+  LastChangedAt;
+}

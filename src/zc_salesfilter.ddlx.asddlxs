@@ -1,0 +1,148 @@
+@Metadata.layer: #PARTNER
+@UI: { 
+ headerInfo: { typeName: 'Sales Filter',
+               typeNamePlural: 'Sales Filter',
+               title: { type: #STANDARD, label: 'Sales Filter', value: 'Imno' }
+                            }
+ }
+annotate view ZC_SALESFILTER
+    with 
+{
+    @EndUserText.label: 'Sales Filter'
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 10 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 1 , 
+    label: 'Company Code'
+    
+  } ]
+  @UI.lineItem: [ {
+    position: 1 , 
+    label: 'Company Code'
+  } ]
+  @UI.selectionField: [ {
+    position: 1 
+  } ]
+ CompCode;
+  
+  @EndUserText.label: 'Plant'
+  @UI.identification: [ {
+    position: 2 , 
+    label: 'Plant'
+  } ]
+  @UI.lineItem: [ {
+    position: 2 , 
+    label: 'Plant'
+  } ]
+  @UI.selectionField: [ {
+    position: 2 
+  } ]  
+  Plant;
+  
+  @EndUserText.label: 'Year'
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'Year'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'Year'
+  } ]
+  @UI.selectionField: [ {
+    position: 3 
+  } ]
+Imfyear;
+  
+  @EndUserText.label: 'Type'
+  @UI.identification: [ {
+    position: 6 , 
+    label: 'Type'
+  } ]
+  @UI.lineItem: [ {
+    position: 6 , 
+    label: 'Type'
+  } ]
+  @UI.selectionField: [ {
+    position: 6 
+  } ]
+  Imtype;
+  
+  @EndUserText.label: 'Imno'
+  @UI.identification: [ {
+    position: 5 , 
+    label: 'Imno'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 , 
+    label: 'Imno'
+  } ]
+  @UI.selectionField: [ {
+    position: 5 
+  } ]
+ Imno;
+ 
+ @EndUserText.label: 'Data Type'
+  @UI.identification: [ {
+    position: 8 , 
+    label: 'Data Type'
+  } ]
+  @UI.lineItem: [ {
+    position: 8 , 
+    label: 'Data Type'
+  } ]
+  @UI.selectionField: [ {
+    position: 8 
+  } ]
+ Datatype;
+ 
+  @UI.identification: [ {
+    position: 90 
+  } ]
+  @UI.lineItem: [ {
+    position: 90 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 90 
+//  } ]
+  CreatedBy;
+  
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  @UI.lineItem: [ {
+    position: 100 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 100 
+//  } ]
+  CreatedAt;
+  
+  @UI.identification: [ {
+    position: 110 
+  } ]
+  @UI.lineItem: [ {
+    position: 110 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 110 
+//  } ]
+  LastChangedBy;
+  
+  @UI.identification: [ {
+    position: 120 
+  } ]
+  @UI.lineItem: [ {
+    position: 120 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 120 
+//  } ]
+  LastChangedAt;
+ 
+    
+}

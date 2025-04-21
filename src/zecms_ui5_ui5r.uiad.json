@@ -1,0 +1,34 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "zecms",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD"
+  },
+  "ui5AppDetails": {
+    "appId": "ecmsreport"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_AF3132D52D8A78D8B37ADBE2DAA478D7F39B2EEC_TM",
+    "semanticObject": "zecms_so",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_AF3132D52D8A78D8B37ADBE2DAA478D7F39B2EEC_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "zecms",
+        "subtitle": "zecms"
+      }
+    }
+  ]
+}

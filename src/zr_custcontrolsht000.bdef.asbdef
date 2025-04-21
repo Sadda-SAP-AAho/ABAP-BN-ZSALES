@@ -1,0 +1,63 @@
+managed implementation in class ZBP_R_CUSTCONTROLSHT000 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_CUSTCONTROLSHT000 alias ZrCustcontrolsht000
+persistent table ZCUSTCONTROLSHT
+draft table ZCSTCNTRLSH000_D
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   GateEntryNo,
+ CompCode,
+  Plant,
+  Imfyear,
+  Dealer;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( readonly : update )
+    GateEntryNo,
+ CompCode,
+  Plant,
+  Imfyear,
+  Dealer;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCUSTCONTROLSHT
+  {
+    Vehiclenum = vehiclenum;
+    Plant = plant;
+    GateEntryNo = gate_entry_no;
+    CompCode = comp_code;
+    Imfyear = imfyear;
+    Gpdate = gpdate;
+    Controlsheet = controlsheet;
+    CostCenter = cost_center;
+    Dealer = dealer;
+    DealerWiseCash = dealer_wise_cash;
+    SalesPerson = sales_person;
+    AmtDeposited = amt_deposited;
+    PostedInd = posted_ind;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}
