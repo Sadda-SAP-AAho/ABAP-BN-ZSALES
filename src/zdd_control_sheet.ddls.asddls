@@ -20,6 +20,8 @@ define root view entity zdd_control_sheet as select from zcontrolsheet
   cost_center as CostCenter,
   sales_person as SalesPerson,
   posted_ind as PostedInd,
+  glposted as Glposted,
+  reference_doc as ReferenceDoc,
   created_by as CreatedBy,
   created_at as CreatedAt,
   last_changed_by as LastChangedBy,

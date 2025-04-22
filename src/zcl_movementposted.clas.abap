@@ -11,6 +11,8 @@ CLASS zcl_movementposted DEFINITION
     CLASS-METHODS runJob
         IMPORTING paramcmno TYPE C.
 
+    CLASS-METHODS getCID RETURNING VALUE(cid) TYPE abp_behv_cid.
+
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
@@ -52,6 +54,13 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
     runjob( '001378' ).
   ENDMETHOD.
 
+  METHOD getCID.
+    TRY.
+        cid = to_upper( cl_uuid_factory=>create_system_uuid( )->create_uuid_x16( ) ).
+    CATCH cx_uuid_error.
+        ASSERT 1 = 0.
+    ENDTRY.
+  ENDMETHOD.
 
   METHOD runjob.
     CONSTANTS mycid TYPE abp_behv_cid VALUE 'My%cid_CRATEMOVE' ##NO_TEXT.
@@ -71,20 +80,12 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
     DATA lt_line TYPE TABLE FOR CREATE I_MaterialDocumentTP\_MaterialDocumentItem.
     FIELD-SYMBOLS <ls_line> LIKE LINE OF lt_line.
     DATA lt_target LIKE <ls_line>-%target.
+    DATA refno TYPE string.
+    DATA localparamno TYPE C LENGTH 20.
+    DATA lineexists TYPE int1.
 
 **********************************************************************
 *   "Post Crate Movements
-
-    SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-R-From`
-        INTO @DATA(wa_cdslsrf).      "SJ 02-04-25 - From StorageLocation SalesPerson Crate Receive "
-    ENDSELECT.
-
-    SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-R-To`
-        INTO @DATA(wa_cdslsrt).      "SJ 02-04-25 - To StorageLocation SalesPerson Crate Receive "
-    ENDSELECT.
-
     SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
         WHERE intgmodule = `CrateData-StorageLocation-S-I-From`
         INTO @DATA(wa_cdslsif).      "SJ 02-04-25 - From StorageLocation SalesPerson Crate Issue "
@@ -96,23 +97,13 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
     ENDSELECT.
 
     SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-R-From`
+        WHERE intgmodule = `CrateData-StorageLocation-D-I-From`
         INTO @DATA(wa_cdsldrf).      "SJ 02-04-25 - From StorageLocation Dealer Security Crate Receive "
     ENDSELECT.
 
     SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-R-To`
+        WHERE intgmodule = `CrateData-StorageLocation-D-I-To`
         INTO @DATA(wa_cdsldrt).      "SJ 02-04-25 - To StorageLocation Dealer Security Crate Receive "
-    ENDSELECT.
-
-    SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-I-From`
-        INTO @DATA(wa_cdsldif).      "SJ 02-04-25 - From StorageLocation Dealer Security Crate Issue "
-    ENDSELECT.
-
-    SELECT intgmodule,intgpath FROM zintegration_tab WITH PRIVILEGED ACCESS
-        WHERE intgmodule = `CrateData-StorageLocation-S-I-To`
-        INTO @DATA(wa_cdsldit).      "SJ 02-04-25 - To StorageLocation Dealer Security Crate Issue "
     ENDSELECT.
 
 
@@ -137,14 +128,15 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
     ENDSELECT.
 
     DATA : ltcratesdata TYPE TABLE OF zcratesdata.
-    IF paramcmno = ''.
+    localparamno = paramcmno.
+    IF localparamno = ''.
       SELECT * FROM zcratesdata AS crda
           WHERE crda~movementposted = 0
           INTO TABLE @ltcratesdata.
     ELSE.
       SELECT * FROM zcratesdata AS crda
           WHERE crda~movementposted = 0
-          AND crda~cmno = @paramcmno
+          AND crda~cmno = @localparamno
           INTO TABLE @ltcratesdata.
     ENDIF.
 
@@ -154,18 +146,23 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
       cmno    = <ls_crates>-cmno .
       cmtype  = <ls_crates>-cmtype.
       cmfyear = <ls_crates>-cmfyear.
+      lineexists = 0.
+
+      DATA(Mycid2) = getCID(  ).
+
+      CONCATENATE  <ls_crates>-plant <ls_crates>-cmfyear <ls_crates>-cmtype <ls_crates>-cmno INTO refno SEPARATED BY '-'.
 
       SELECT SINGLE FROM I_product
           FIELDS  BaseUnit
           WHERE Product = @wa_cdcrate1-intgpath
           INTO @DATA(unit).
 
-*      IF <ls_crates>-cmtype = 'R' AND <ls_crates>-cmnoseries = 'S' AND ( <ls_crates>-cmcrates1 > 0 OR <ls_crates>-cmcrates2 > 0 OR <ls_crates>-cmcrates3 > 0 OR <ls_crates>-cmcrates4 > 0 ).
       CLEAR lt_target[].
 
       IF <ls_crates>-cmcrates1 > 0.
+        lineexists = 1.
         APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_target>).
-        <ls_target>-%cid = |My%CID_1_001|.
+        <ls_target>-%cid = |{ Mycid2 }_1_001|.
         <ls_target>-plant                              =  plantno.
         <ls_target>-Material                           =  wa_cdcrate1-intgpath. "'CMCRATES1'"
         <ls_target>-goodsmovementtype                  =  '311'.
@@ -191,11 +188,12 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
         <ls_target>-IssgOrRcvgSpclStockInd             =  ''.
         <ls_target>-SpecialStockIdfgSalesOrder         =  ''.
         <ls_target>-SpecialStockIdfgSalesOrderItem     =  ''.
-        <ls_target>-materialdocumentitemtext           =  |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|.
+        <ls_target>-materialdocumentitemtext           =  refno.
       ENDIF.
       IF <ls_crates>-cmcrates2 > 0.
+        lineexists = 1.
         APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_target2>).
-        <ls_target2>-%cid = |My%CID_2_001|.
+        <ls_target2>-%cid = |{ Mycid2 }_2_001|.
         <ls_target2>-plant                              =  plantno.
         <ls_target2>-Material                           =  wa_cdcrate2-intgpath. "'CMCRATES2'"
         <ls_target2>-goodsmovementtype                  =  '311'.
@@ -221,11 +219,12 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
         <ls_target2>-IssgOrRcvgSpclStockInd             =  ''.
         <ls_target2>-SpecialStockIdfgSalesOrder         =  ''.
         <ls_target2>-SpecialStockIdfgSalesOrderItem     =  ''.
-        <ls_target2>-materialdocumentitemtext           =  |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|.
+        <ls_target2>-materialdocumentitemtext           =  refno.
       ENDIF.
       IF <ls_crates>-cmcrates3 > 0.
+        lineexists = 1.
         APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_target3>).
-        <ls_target3>-%cid = |My%CID_3_001|.
+        <ls_target3>-%cid = |{ Mycid2 }_3_001|.
         <ls_target3>-plant                              =  plantno.
         <ls_target3>-Material                           =  wa_cdcrate3-intgpath. "'CMCRATES3'"
         <ls_target3>-goodsmovementtype                  =  '311'.
@@ -251,11 +250,12 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
         <ls_target3>-IssgOrRcvgSpclStockInd             =  ''.
         <ls_target3>-SpecialStockIdfgSalesOrder         =  ''.
         <ls_target3>-SpecialStockIdfgSalesOrderItem     =  ''.
-        <ls_target3>-materialdocumentitemtext           =  |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|.
+        <ls_target3>-materialdocumentitemtext           =  refno.
       ENDIF.
       IF <ls_crates>-cmcrates4 > 0.
+        lineexists = 1.
         APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_target4>).
-        <ls_target4>-%cid = |My%CID_4_001|.
+        <ls_target4>-%cid = |{ Mycid2 }_4_001|.
         <ls_target4>-plant                              =  plantno.
         <ls_target>-Material                           =  wa_cdcrate4-intgpath. "'CMCRATES4'"
         <ls_target4>-goodsmovementtype                  =  '311'.
@@ -281,80 +281,85 @@ CLASS ZCL_MOVEMENTPOSTED IMPLEMENTATION.
         <ls_target4>-IssgOrRcvgSpclStockInd             =  ''.
         <ls_target4>-SpecialStockIdfgSalesOrder         =  ''.
         <ls_target4>-SpecialStockIdfgSalesOrderItem     =  ''.
-        <ls_target4>-materialdocumentitemtext           =  |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|.
+        <ls_target4>-materialdocumentitemtext           =  refno.
       ENDIF.
 
-      MODIFY ENTITIES OF i_materialdocumenttp
-          ENTITY materialdocument
-          CREATE FROM VALUE #( ( %cid       = |My%CID_0_001|
-              goodsmovementcode             = '04'
-              postingdate                   =  <ls_crates>-cmdate
-              documentdate                  =  <ls_crates>-cmdate
-              MaterialDocumentHeaderText    =  |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|
-
-              %control-goodsmovementcode    = cl_abap_behv=>flag_changed
-              %control-postingdate          = cl_abap_behv=>flag_changed
-              %control-documentdate         = cl_abap_behv=>flag_changed
-              ) )
-
+      IF lineexists <> 0.
+          MODIFY ENTITIES OF i_materialdocumenttp
               ENTITY materialdocument
-              CREATE BY \_materialdocumentitem
-              FROM VALUE #( (
-                      %cid_ref = |My%CID_0_001|
-                      %target = lt_target
-                           ) )
-              MAPPED   DATA(ls_create_mapped2)
-              FAILED   DATA(ls_create_failed2)
-              REPORTED DATA(ls_create_reported2).
+              CREATE FROM VALUE #( ( %cid       = Mycid2
+                  goodsmovementcode             = '04'
+                  postingdate                   =  <ls_crates>-cmdate
+                  documentdate                  =  <ls_crates>-cmdate
+                  MaterialDocumentHeaderText    =  refno
 
-      COMMIT ENTITIES BEGIN
-        RESPONSE OF i_materialdocumenttp
-        FAILED DATA(commit_failed2)
-        REPORTED DATA(commit_reported2).
-      COMMIT ENTITIES END.
+                  %control-goodsmovementcode            = cl_abap_behv=>flag_changed
+                  %control-postingdate                  = cl_abap_behv=>flag_changed
+                  %control-documentdate                 = cl_abap_behv=>flag_changed
+                  %control-MaterialDocumentHeaderText   = cl_abap_behv=>flag_changed
+                  ) )
 
-      IF commit_failed2 IS INITIAL.
+                  ENTITY materialdocument
+                  CREATE BY \_materialdocumentitem
+                  FROM VALUE #( (
+                          %cid_ref = Mycid2
+                          %target = lt_target
+                               ) )
+                  MAPPED   DATA(ls_create_mapped2)
+                  FAILED   DATA(ls_create_failed2)
+                  REPORTED DATA(ls_create_reported2).
 
-        DATA: jeno TYPE char72.
-        jeno = |{ <ls_crates>-cmno }{ <ls_crates>-cmaid }|.
-        SELECT SINGLE FROM I_MaterialDocumentItem_2
-           FIELDS MaterialDocument
-          WHERE MaterialDocumentItemText = @jeno
-          AND CompanyCode = @companycode AND Plant = @plantno
-          AND PostingDate = @<ls_crates>-cmdate
-          INTO @DATA(mdit).
+          COMMIT ENTITIES BEGIN
+            RESPONSE OF i_materialdocumenttp
+            FAILED DATA(commit_failed2)
+            REPORTED DATA(commit_reported2).
+          COMMIT ENTITIES END.
+
+          IF commit_failed2 IS INITIAL.
+
+            SELECT SINGLE FROM I_MaterialDocumentItem_2
+               FIELDS MaterialDocument
+              WHERE MaterialDocumentItemText = @refno
+              AND CompanyCode = @companycode AND Plant = @plantno
+              AND PostingDate = @<ls_crates>-cmdate
+              INTO @DATA(mdit).
 
 
-        UPDATE zcratesdata
-            SET movementposted = 1,
-            error_log = ``,
-            reference_doc = @mdit
+            UPDATE zcratesdata
+                SET movementposted = 1,
+                error_log = ``,
+                reference_doc = @mdit
+                WHERE comp_code = @companycode AND plant = @plantno AND cmno = @cmno
+                AND cmtype = @cmtype AND cmfyear = @cmfyear
+                AND movementposted = 0.
+          ELSE.
+            DATA: lv_cust_result TYPE char256.
+            LOOP AT commit_failed2-materialdocument ASSIGNING FIELD-SYMBOL(<ls_reported_deep>).
+
+              lv_cust_result = lv_cust_result && <ls_reported_deep>-%fail-cause. " ->if_message~get_text( )."
+
+*                     DATA(lv_result) = <ls_reported_deep>-%msg->if_message~get_text( ).
+              ...
+            ENDLOOP.
+
+            UPDATE zcratesdata
+                  SET error_log = @lv_cust_result
             WHERE comp_code = @companycode AND plant = @plantno AND cmno = @cmno
             AND cmtype = @cmtype AND cmfyear = @cmfyear
             AND movementposted = 0.
+
+            CLEAR: lv_cust_result.
+          ENDIF.
       ELSE.
-        DATA: lv_cust_result TYPE char256.
-        LOOP AT commit_failed2-materialdocument ASSIGNING FIELD-SYMBOL(<ls_reported_deep>).
-
-          lv_cust_result = lv_cust_result && <ls_reported_deep>-%fail-cause. " ->if_message~get_text( )."
-
-*                 DATA(lv_result) = <ls_reported_deep>-%msg->if_message~get_text( ).
-          ...
-        ENDLOOP.
-
         UPDATE zcratesdata
-              SET error_log = @lv_cust_result
+            SET movementposted = 1, error_log = 'Zero Qty.'
         WHERE comp_code = @companycode AND plant = @plantno AND cmno = @cmno
         AND cmtype = @cmtype AND cmfyear = @cmfyear
         AND movementposted = 0.
-
-        CLEAR: lv_cust_result.
       ENDIF.
 
       CLEAR : ls_create_failed2, ls_create_failed2, ls_create_reported2.
 *      ENDIF.
-
-
     ENDLOOP.
 
 

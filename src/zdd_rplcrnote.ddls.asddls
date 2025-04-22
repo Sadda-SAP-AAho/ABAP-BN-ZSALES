@@ -4,12 +4,12 @@
 define root view entity zdd_rplcrnote as select from zdt_rplcrnote
 //composition of target_data_source_name as _association_name
 {
+    key comp_code as CompCode,
+    key implant as implant,
     key imfyear as Imfyear,
     key imtype as Imtype,
-    key comp_code as CompCode,
     key imno as Imno,
     key imdealercode as Imdealercode,
-    key implant as implant,
     imnoseries as Imnoseries,
     location as Location,
     imdate as Imdate,
@@ -25,6 +25,8 @@ define root view entity zdd_rplcrnote as select from zdt_rplcrnote
     error_log as ErrorLog,
     processed as Processed,
     dealercrdoc as Dealercrdoc,
+    glposted as Glposted,
+    glerror_log as Glerrorlog,
     scrapindoc as Scrapindoc,
     created_by as CreatedBy,
     created_at as CreatedAt,

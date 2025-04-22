@@ -1,0 +1,102 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@Metadata.allowExtensions: true
+@EndUserText.label: 'Invoice Master Data'
+define  view entity ZR_INV_MST000
+  as select from zinv_mst
+  composition [0..*] of ZR_INVOICEDATATAB1000 as _InvoiceLines
+  association to parent ZR_INVGROUPED000 as _Group on $projection.Imdate = _Group.Orderdate and $projection.Type = _Group.Type
+{
+  key comp_code as CompCode,
+  key plant as Plant,
+  key imfyear as Imfyear,
+  key imtype as Imtype,
+  key imno as Imno,
+  'Sales' as Type,
+  imnoseries as Imnoseries,
+  imcat as Imcat,
+  imdate as Imdate,
+  imsalesmancode as Imsalesmancode,
+  impartycode as Impartycode,
+  imroutecode as Imroutecode,
+  imvehcode as Imvehcode,
+  imtransname as Imtransname,
+  imgrno as Imgrno,
+  imgrdate as Imgrdate,  
+  imremarks as Imremarks,
+  imtotqty as Imtotqty,
+  imgrswgt as Imgrswgt,
+  imvogamt as Imvogamt,
+  imtxbamt as Imtxbamt,
+  imnetamt as Imnetamt,
+  imnetamtro as Imnetamtro,
+  imcrates1 as Imcrates1,
+  imcrates2 as Imcrates2,
+  imrcds as Imrcds,
+  imdeltag as Imdeltag,
+  imusercode as Imusercode,
+  imdfdt as Imdfdt,
+  imdudt as Imdudt,
+  imaid as Imaid,
+  imlocktag as Imlocktag,
+  imdespatchtag as Imdespatchtag,
+  imsumno as Imsumno,
+  imcrates3 as Imcrates3,
+  imcrates4 as Imcrates4,
+  imorderno as Imorderno,
+  imprintedon as Imprintedon,
+  imprintedby as Imprintedby,
+  imsaledate as Imsaledate,
+  imddealercode as Imddealercode,
+  imcgstamt as Imcgstamt,
+  imsgstamt as Imsgstamt,
+  imigstamt as Imigstamt,
+  imdealercode as Imdealercode,
+  imvroutecode as Imvroutecode,
+  imewaybillno as Imewaybillno,
+  imewaybilltag as Imewaybilltag,
+  imewaybilldate as Imewaybilldate,
+  imdeviceid as Imdeviceid,
+  imver as Imver,
+  imsscode as Imsscode,
+  imempcode as Imempcode,
+  imewaystatus as Imewaystatus,
+  imirnstatus as Imirnstatus,
+  imdealergstno as Imdealergstno,
+  imsuptype as Imsuptype,
+  imminno as Imminno,
+  immindt as Immindt,
+  scrapbill as Scrapbill,
+  imcmpcode as Imcmpcode,
+  error_log as ErrorLog,
+  remarks as Remarks,
+  processed as Processed,
+  reference_doc as ReferenceDoc,
+  orderamount as Orderamount,
+  reference_doc_del as ReferenceDocDel,
+  reference_doc_invoice as ReferenceDocInvoice,
+  invoiceamount as Invoiceamount,
+  status as Status,
+  @Semantics.user.createdBy: true
+  created_by as CreatedBy,
+  @Semantics.systemDateTime.createdAt: true
+  created_at as CreatedAt,
+  @Semantics.user.localInstanceLastChangedBy: true
+  last_changed_by as LastChangedBy,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  last_changed_at as LastChangedAt,
+  cust_code as CustCode,
+  po_tobe_created as PoTobeCreated,
+  po_processed as PoProcessed,
+  po_no as PoNo,
+  migo_processed as MigoProcessed,
+  migo_no as MigoNo,
+   case 
+      when imnetamtro != invoiceamount then 1
+      else 0
+    end 
+   as Highlight,
+  datavalidated as Datavalidated,
+  _Group,
+  _InvoiceLines
+  
+}

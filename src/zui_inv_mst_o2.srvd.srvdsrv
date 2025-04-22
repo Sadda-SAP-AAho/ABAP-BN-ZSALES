@@ -1,7 +1,4 @@
 @EndUserText.label: 'INV MST API V2 Service Definition'
 define service ZUI_INV_MST_O2 {
-  expose ZC_INV_MST         as INVMST;
-  expose ZC_INVOICEDATATAB1 as INVLines;
-  expose ZINVGROUPED        as INVGrouped;
-  expose ZINVMSTGROUPED     as INVGroupedMST;
+  expose ZR_GateEntryHeader;
 }

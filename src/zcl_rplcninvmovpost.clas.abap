@@ -8,7 +8,11 @@ CLASS zcl_rplcninvmovpost DEFINITION
     INTERFACES if_apj_rt_exec_object .
 
     INTERFACES if_oo_adt_classrun .
-    CLASS-METHODS runJob  .
+    CLASS-METHODS runJob
+        IMPORTING paramcmno TYPE C.
+
+
+    CLASS-METHODS getCID RETURNING VALUE(cid) TYPE abp_behv_cid.
 
   PROTECTED SECTION.
   PRIVATE SECTION.
@@ -22,24 +26,41 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
   METHOD if_apj_dt_exec_object~get_parameters.
     " Return the supported selection parameters here
     et_parameter_def = VALUE #(
-      ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     datatype = 'C' length = 80 param_text = 'Post Material Variance'   lowercase_ind = abap_true changeable_ind = abap_true )
+      ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     datatype = 'C' length = 80 param_text = 'Post Scrap Generation'   lowercase_ind = abap_true changeable_ind = abap_true )
     ).
 
     " Return the default parameters values here
     et_parameter_val = VALUE #(
-      ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     sign = 'I' option = 'EQ' low = 'Post Material Variance' )
+      ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     sign = 'I' option = 'EQ' low = 'Post Scrap Generation' )
     ).
 
   ENDMETHOD.
 
 
   METHOD if_apj_rt_exec_object~execute.
-    runjob( ).
+    DATA p_descr TYPE c LENGTH 80.
+
+  " Getting the actual parameter values
+    LOOP AT it_parameters INTO DATA(ls_parameter).
+      CASE ls_parameter-selname.
+        WHEN 'P_DESCR'. p_descr = ls_parameter-low.
+      ENDCASE.
+    ENDLOOP.
+
+    runjob( p_descr ).
   ENDMETHOD.
 
 
   METHOD if_oo_adt_classrun~main .
-    runjob( ).
+    runjob( 'ABC' ).
+  ENDMETHOD.
+
+  METHOD getCID.
+    TRY.
+        cid = to_upper( cl_uuid_factory=>create_system_uuid( )->create_uuid_x16( ) ).
+    CATCH cx_uuid_error.
+        ASSERT 1 = 0.
+    ENDTRY.
   ENDMETHOD.
 
 
@@ -61,19 +82,36 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
     DATA lt_line TYPE TABLE FOR CREATE I_MaterialDocumentTP\_MaterialDocumentItem.
     FIELD-SYMBOLS <ls_line> like line of lt_line.
     DATA lt_target LIKE <ls_line>-%target.
+    DATA refno TYPE string.
+    DATA localparamno TYPE C LENGTH 20.
 
 **********************************************************************
-*   "Post Scrap Generation Data
 
-    SELECT FROM zdt_rplcrnote
-    FIELDS comp_code, imfyear, imno, imdate, implant, location, imwrappercode, imbreadcode, imbreadwt, imwrapperwt
-    WHERE processed = ''
-    INTO TABLE @DATA(ltcrdata).
+    SELECT SINGLE FROM zintegration_tab AS a
+        FIELDS a~intgpath
+        WHERE a~intgmodule = 'FGSTORAGELOCATION'
+        INTO @DATA(wa_fgstoragelocation).
+
+*   "Post Scrap Generation Data
+    DATA : ltcrdata TYPE TABLE OF zdt_rplcrnote.
+    localparamno = paramcmno.
+    IF localparamno = ''.
+        SELECT * FROM zdt_rplcrnote
+            WHERE processed = ''
+        INTO TABLE @ltcrdata.
+    ELSE.
+        SELECT * FROM zdt_rplcrnote
+            WHERE processed = '' AND imno = @localparamno
+        INTO TABLE @ltcrdata.
+    ENDIF.
     LOOP AT ltcrdata ASSIGNING FIELD-SYMBOL(<ls_crdata>).
         companycode = <ls_crdata>-comp_code.
         plantno = <ls_crdata>-implant.
         cmno    = <ls_crdata>-imno.
         cmfyear = <ls_crdata>-imfyear.
+
+        DATA(Mycid2) = getCID(  ).
+        CONCATENATE  <ls_crdata>-implant <ls_crdata>-imfyear <ls_crdata>-imtype <ls_crdata>-imno <ls_crdata>-imdealercode INTO refno SEPARATED BY '-'.
 
         clear lt_target[].
 
@@ -85,18 +123,18 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
             productcode = pcodeBread.
 
             APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_targets1>).
-                <ls_targets1>-%cid = |My%CID_1_001|.
+                <ls_targets1>-%cid = |{ Mycid2 }_1_001|.
                 <ls_targets1>-plant                              =  plantno.
                 <ls_targets1>-Material                           =  productcode.
                 <ls_targets1>-goodsmovementtype                  =  '501'.
                 <ls_targets1>-InventorySpecialStockType          =  ''.
-                <ls_targets1>-storagelocation                    =  <ls_crdata>-location.
+                <ls_targets1>-storagelocation                    =  wa_fgstoragelocation.
                 <ls_targets1>-quantityinentryunit                =  <ls_crdata>-imbreadwt.
                 <ls_targets1>-entryunit                          =  ''.
                 <ls_targets1>-batch                              =  ''.
                 <ls_targets1>-SpecialStockIdfgSalesOrder         =  ''.
                 <ls_targets1>-SpecialStockIdfgSalesOrderItem     =  ''.
-                <ls_targets1>-materialdocumentitemtext           =  |{ <ls_crdata>-imno }|.
+                <ls_targets1>-materialdocumentitemtext           =  refno.
         ENDIF.
         IF <ls_crdata>-imwrapperwt > 0.
             SELECT SINGLE FROM I_ProductStdVH
@@ -106,38 +144,39 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
             productcode = pcodeWrapper.
 
             APPEND INITIAL LINE TO lt_target ASSIGNING FIELD-SYMBOL(<ls_targets2>).
-                <ls_targets2>-%cid = |My%CID_2_001|.
+                <ls_targets2>-%cid = |{ Mycid2 }_2_001|.
                 <ls_targets2>-plant                              =  plantno.
                 <ls_targets2>-Material                           =  productcode.
                 <ls_targets2>-goodsmovementtype                  =  '501'.
                 <ls_targets2>-InventorySpecialStockType          =  ''.
-                <ls_targets2>-storagelocation                    =  <ls_crdata>-location.
+                <ls_targets2>-storagelocation                    =  wa_fgstoragelocation.
                 <ls_targets2>-quantityinentryunit                =  <ls_crdata>-imwrapperwt.
                 <ls_targets2>-entryunit                          =  ''.
                 <ls_targets2>-batch                              =  ''.
                 <ls_targets2>-SpecialStockIdfgSalesOrder         =  ''.
                 <ls_targets2>-SpecialStockIdfgSalesOrderItem     =  ''.
-                <ls_targets2>-materialdocumentitemtext           =  |{ <ls_crdata>-imno }|.
+                <ls_targets2>-materialdocumentitemtext           =  refno.
         ENDIF.
         IF <ls_crdata>-imbreadwt > 0 OR <ls_crdata>-imwrapperwt > 0.
 
             MODIFY ENTITIES OF i_materialdocumenttp
                 ENTITY materialdocument
-                CREATE FROM VALUE #( ( %cid       = |My%CID_0_001|
+                CREATE FROM VALUE #( ( %cid       = Mycid2
                     goodsmovementcode             = '01'
                     postingdate                   =  <ls_crdata>-imdate
                     documentdate                  =  <ls_crdata>-imdate
-                    MaterialDocumentHeaderText    =  |{ <ls_crdata>-imno }|
+                    MaterialDocumentHeaderText    =  refno
 
-                    %control-goodsmovementcode    = cl_abap_behv=>flag_changed
-                    %control-postingdate          = cl_abap_behv=>flag_changed
-                    %control-documentdate         = cl_abap_behv=>flag_changed
+                    %control-goodsmovementcode          = cl_abap_behv=>flag_changed
+                    %control-postingdate                = cl_abap_behv=>flag_changed
+                    %control-documentdate               = cl_abap_behv=>flag_changed
+                    %control-MaterialDocumentHeaderText = cl_abap_behv=>flag_changed
                     ) )
 
                     ENTITY materialdocument
                     CREATE BY \_materialdocumentitem
                     FROM VALUE #( (
-                            %cid_ref = |My%CID_0_001|
+                            %cid_ref = Mycid2
                             %target = lt_target
                                  ) )
                     MAPPED   DATA(ls_create_mappedcr)
@@ -180,12 +219,9 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
 
             IF commit_failedcr is INITIAL.
 
-
-              data: jeno type char72.
-              jeno = |{ <ls_crdata>-imno }|.
               SELECT SINGLE FROM I_MaterialDocumentItem_2
-                 FIELDS MaterialDocument
-                where MaterialDocumentItemText = @jeno
+                FIELDS MaterialDocument
+                where MaterialDocumentItemText = @refno
                 and CompanyCode = @companycode and Plant = @plantno
                 and PostingDate = @<ls_crdata>-imdate
                 into @data(mdit).
@@ -195,7 +231,7 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
                     error_log = ``,
                     scrapindoc = @mdit
                     WHERE comp_code = @companycode AND implant = @plantno AND imno = @cmno
-                    AND imfyear = @cmfyear.
+                    AND imfyear = @cmfyear AND imtype = @<ls_crdata>-imtype AND imdealercode = @<ls_crdata>-imdealercode.
             else.
                 data: lv_cust_result type char256.
                 LOOP AT commit_failedcr-materialdocument ASSIGNING FIELD-SYMBOL(<ls_reported_deep>).
@@ -207,16 +243,18 @@ CLASS ZCL_RPLCNINVMOVPOST IMPLEMENTATION.
                 ENDLOOP.
 
                 UPDATE zdt_rplcrnote
-                      SET error_log = @lv_cust_result
+                    SET error_log = @lv_cust_result
                     WHERE comp_code = @companycode AND implant = @plantno AND imno = @cmno
-                AND imfyear = @cmfyear AND glposted = 0.
-
-
-
+                    AND imfyear = @cmfyear AND imtype = @<ls_crdata>-imtype AND imdealercode = @<ls_crdata>-imdealercode.
             ENDIF.
 
             CLEAR : ls_create_failedcr, ls_create_failedcr, ls_create_reportedcr.
 
+        ELSE.
+            UPDATE zdt_rplcrnote
+                SET error_log = 'Zero Qty.', processed = '1'
+                WHERE comp_code = @companycode AND implant = @plantno AND imno = @cmno
+                AND imfyear = @cmfyear AND imtype = @<ls_crdata>-imtype AND imdealercode = @<ls_crdata>-imdealercode.
         ENDIF.
 
     ENDLOOP.

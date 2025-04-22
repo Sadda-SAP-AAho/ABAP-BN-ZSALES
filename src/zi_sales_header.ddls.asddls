@@ -124,6 +124,6 @@ define root view entity ZI_SALES_HEADER
       po_processed          as PO_Processed,
       po_no                as PO_no,
       migo_processed     as   Migo_processed,
-      migo_no               as Migo_no
-           
+    migo_no               as Migo_no,
+    datavalidated as datavalidated
 }

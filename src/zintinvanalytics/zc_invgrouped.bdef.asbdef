@@ -1,0 +1,26 @@
+projection;
+strict;
+
+
+define behavior for ZC_INVGROUPED alias ZcInvgrouped
+
+{
+  use action calculate;
+  use association _InvoiceHeaders ;
+}
+
+define behavior for ZC_INV_MST000 alias ZcInvMST
+
+{
+//    use association _InvoiceLines { create; }
+    use association _Group;
+    use action clearProcessing;
+}
+
+//define behavior for ZC_INVOICEDATATAB1000 alias ZcInvDATATAB
+//use etag
+//
+//{
+//    use association _InvoiceHeader ;
+//    use association _Group;
+//}
