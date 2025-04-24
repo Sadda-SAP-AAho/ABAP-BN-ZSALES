@@ -111,9 +111,9 @@ define root view entity ZI_SALES_HEADER
       error_log       as ErrorLog,
       remarks         as Remarks,
       processed       as Processed,
-      reference_doc    as ReferenceDoc,
-      reference_doc_del as RefereneDocDelivery,
-      reference_doc_invoice as RefereneDocInvoice,
+      reference_doc    as SalesOrderNo,
+      reference_doc_del as OutboundDeliveryNo,
+      reference_doc_invoice as BillingDocumentNo,
       status as Status,
       created_by      as CreatedBy,
       created_at      as CreatedAt,
@@ -122,8 +122,8 @@ define root view entity ZI_SALES_HEADER
       cust_code           as Cust_Code,
       po_tobe_created       as PO_Tobe_created,
       po_processed          as PO_Processed,
-      po_no                as PO_no,
-      migo_processed     as   Migo_processed,
-    migo_no               as Migo_no,
-    datavalidated as datavalidated
+      po_no                as PO_No,
+      migo_processed     as   Migo_Processed,
+      migo_no               as MaterialDocNo,
+      datavalidated as datavalidated
 }

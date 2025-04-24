@@ -4,7 +4,7 @@
 @UI.headerInfo.description.type: #STANDARD
 @UI.headerInfo.description.value: 'Imno'
 @UI.lineItem: [{criticality: 'Highlight'}] 
-annotate view ZC_INV_MST000 with
+annotate view ZC_USDATAMST with
 {
   @EndUserText.label: 'Company Code'
   
@@ -21,11 +21,11 @@ annotate view ZC_INV_MST000 with
     label: 'General Information', 
     position: 20 
   }, {
-    id: 'InvoiceLines', 
+    id: 'UnsoldLines', 
     type: #LINEITEM_REFERENCE, 
     label: 'Lines', 
     position: 30 , 
-    targetElement: '_InvoiceLines'
+    targetElement: '_UnsoldLines'
   } ]
   
  
@@ -33,7 +33,7 @@ annotate view ZC_INV_MST000 with
     position: 10 , 
       label: 'Clear Processing',
       type: #FOR_ACTION,
-      dataAction: 'clearProcessing',
+      dataAction: 'clearProcessingUnsold',
       invocationGrouping: #CHANGE_SET,
     importance: #HIGH
   }, {
@@ -44,7 +44,7 @@ annotate view ZC_INV_MST000 with
     position: 10 , 
       label: 'Clear Processing',
       type: #FOR_ACTION,
-      dataAction: 'clearProcessing',
+      dataAction: 'clearProcessingUnsold',
       invocationGrouping: #CHANGE_SET,
     importance: #HIGH
   }, {
@@ -117,17 +117,7 @@ annotate view ZC_INV_MST000 with
   } ]
   Imnoseries;
   
-  @EndUserText.label: 'Imcat'
-  @UI.identification: [ {
-    position: 70 , 
-    label: 'Imcat'
-  } ]
-  @UI.lineItem: [ {
-    position: 70 , 
-    label: 'Imcat'
-  } ]
-  Imcat;
-  
+
   @EndUserText.label: 'Imdate'
   @UI.identification: [ {
     position: 80 , 
@@ -167,18 +157,6 @@ annotate view ZC_INV_MST000 with
 @UI.hidden: true
   Imroutecode;
   
-@UI.hidden: true
-  Imvehcode;
-  
-@UI.hidden: true
-  Imtransname;
-  
-@UI.hidden: true
-  Imgrno;
-  
-@UI.hidden: true
-  Imgrdate;
-  
   @EndUserText.label: 'Imremarks'
   @UI.identification: [ {
     position: 160 , 
@@ -197,8 +175,6 @@ annotate view ZC_INV_MST000 with
   } ]
   Imtotqty;
   
-@UI.hidden: true
-  Imgrswgt;
   
 @UI.hidden: true
   Imvogamt;
@@ -251,139 +227,6 @@ annotate view ZC_INV_MST000 with
   
 @UI.hidden: true
   Imaid;
-  
-@UI.hidden: true
-  Imlocktag;
-  
-@UI.hidden: true
-  Imdespatchtag;
-  
-@UI.hidden: true
-  Imsumno;
-  
-@UI.hidden: true
-  Imcrates3;
-  
-@UI.hidden: true
-  Imcrates4;
-  
-  @EndUserText.label: 'Imorderno'
-  @UI.identification: [ {
-    position: 360 , 
-    label: 'Imorderno'
-  } ]
-  @UI.lineItem: [ {
-    position: 360 , 
-    label: 'Imorderno'
-  } ]
-  Imorderno;
-  
-@UI.hidden: true
-  Imprintedon;
-  
-@UI.hidden: true
-  Imprintedby;
-  
-  @EndUserText.label: 'Imsaledate'
-  @UI.identification: [ {
-    position: 390 , 
-    label: 'Imsaledate'
-  } ]
-  Imsaledate;
-  
-@UI.hidden: true
-  Imddealercode;
-  
-  @EndUserText.label: 'Imcgstamt'
-  @UI.identification: [ {
-    position: 410 , 
-    label: 'Imcgstamt'
-  } ]
-  Imcgstamt;
-  
-  @EndUserText.label: 'Imsgstamt'
-  @UI.identification: [ {
-    position: 420 , 
-    label: 'Imsgstamt'
-  } ]
-  Imsgstamt;
-  
-  @EndUserText.label: 'Imigstamt'
-  @UI.identification: [ {
-    position: 430 , 
-    label: 'Imigstamt'
-  } ]
-  Imigstamt;
-  
-  @EndUserText.label: 'Imdealercode'
-  @UI.identification: [ {
-    position: 440 , 
-    label: 'Imdealercode'
-  } ]
-  Imdealercode;
-  
-@UI.hidden: true
-  Imvroutecode;
-  
-@UI.hidden: true
-  Imewaybillno;
-  
-@UI.hidden: true
-  Imewaybilltag;
-  
-@UI.hidden: true
-  Imewaybilldate;
-  
-@UI.hidden: true
-  Imdeviceid;
-  
-@UI.hidden: true
-  Imver;
-  
-@UI.hidden: true
-  Imsscode;
-  
-  @EndUserText.label: 'Imempcode'
-  @UI.identification: [ {
-    position: 520 , 
-    label: 'Imempcode'
-  } ]
-
-  Imempcode;
-  
-@UI.hidden: true
-  Imewaystatus;
-  
-@UI.hidden: true
-  Imirnstatus;
-  
-@UI.hidden: true
-  Imdealergstno;
-  
-@UI.hidden: true
-  Imsuptype;
-  
-@UI.hidden: true
-  Imminno;
-  
-@UI.hidden: true
-  Immindt;
-  
-  @EndUserText.label: 'Scrapbill'
-  @UI.identification: [ {
-    position: 590 , 
-    label: 'Scrapbill'
-  } ]
-
-  Scrapbill;
-  
-  @EndUserText.label: 'Imcmpcode'
-  @UI.identification: [ {
-    position: 600 , 
-    label: 'Imcmpcode'
-  } ]
-
-  Imcmpcode;
   
 @UI.hidden: true
   
@@ -478,60 +321,6 @@ annotate view ZC_INV_MST000 with
 @UI.hidden: true
   CustCode;
   
-  @EndUserText.label: 'Po To be Created'
-  @UI.identification: [ {
-    position: 750 , 
-    label: 'Po To be Created'
-  } ]
-  @UI.lineItem: [ {
-    position: 750 , 
-    label: 'Po To be Created'
-  } ]
-  PoTobeCreated;
-  
-  @EndUserText.label: 'Po Processed'
-  @UI.identification: [ {
-    position: 760 , 
-    label: 'Po Processed'
-  } ]
-  @UI.lineItem: [ {
-    position: 760 , 
-    label: 'Po Processed'
-  } ]
-  PoProcessed;
-  
-  @EndUserText.label: 'Po No'
-  @UI.identification: [ {
-    position: 770 , 
-    label: 'Po No'
-  } ]
-  @UI.lineItem: [ {
-    position: 770 , 
-    label: 'Po No'
-  } ]
-  PoNo;
-  
-  @EndUserText.label: 'Migo Processed'
-  @UI.identification: [ {
-    position: 780 , 
-    label: 'Migo Processed'
-  } ]
-  @UI.lineItem: [ {
-    position: 780 , 
-    label: 'Migo Processed'
-  } ]
-  MigoProcessed;
-  
-  @EndUserText.label: 'MigoNo'
-  @UI.identification: [ {
-    position: 790 , 
-    label: 'MigoNo'
-  } ]
-  @UI.lineItem: [ {
-    position: 790 , 
-    label: 'MigoNo'
-  } ]
-  MigoNo;
   
   @EndUserText.label: 'Error Flag'
   @UI.identification: [ {

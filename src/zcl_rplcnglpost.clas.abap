@@ -22,12 +22,12 @@ CLASS zcl_rplcnglpost IMPLEMENTATION.
     METHOD if_apj_dt_exec_object~get_parameters.
         " Return the supported selection parameters here
         et_parameter_def = VALUE #(
-          ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     datatype = 'C' length = 80 param_text = 'Create Interbranch PO'   lowercase_ind = abap_true changeable_ind = abap_true )
+          ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     datatype = 'C' length = 80 param_text = 'Outgoing Credit Note'   lowercase_ind = abap_true changeable_ind = abap_true )
         ).
 
         " Return the default parameters values here
         et_parameter_val = VALUE #(
-          ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     sign = 'I' option = 'EQ' low = 'Create Interbranch PO' )
+          ( selname = 'P_DESCR' kind = if_apj_dt_exec_object=>parameter     sign = 'I' option = 'EQ' low = 'Outgoing Credit Note' )
         ).
 
     ENDMETHOD.
@@ -77,7 +77,7 @@ CLASS zcl_rplcnglpost IMPLEMENTATION.
             plantno = <ls_crdata>-implant.
             cmno    = <ls_crdata>-imno.
             cmfyear = <ls_crdata>-imfyear.
-
+            customercode = ''.
             Select From I_BusinessPartner AS ibp
                 FIELDS BusinessPartner
                 where ibp~BusinessPartnerIDByExtSystem = @<ls_crdata>-imdealercode
@@ -122,7 +122,7 @@ CLASS zcl_rplcnglpost IMPLEMENTATION.
                     postingdate = <ls_crdata>-imdate
                     accountingdocumentheadertext = <ls_crdata>-comp_code && <ls_crdata>-implant
                                                     && <ls_crdata>-imfyear && <ls_crdata>-imtype
-                                                    && <ls_crdata>-imno &&  <ls_crdata>-imdealercode
+                                                    && <ls_crdata>-imno
 
                     _aritems = VALUE #(
                                         ( glaccountlineitem = |001|
@@ -184,24 +184,28 @@ CLASS zcl_rplcnglpost IMPLEMENTATION.
                         COMMIT ENTITIES END.
 
                         IF lt_commit_failed is INITIAL.
-                           data: jeno type char72.
-
-
+                            data: jeno type char72.
+                            DATA : acctdoc TYPE c LENGTH 30.
                             jeno = <ls_crdata>-comp_code && <ls_crdata>-implant
                                     && <ls_crdata>-imfyear && <ls_crdata>-imtype
-                                    && <ls_crdata>-imno &&  <ls_crdata>-imdealercode.
+                                    && <ls_crdata>-imno .
 
-                            select SINGLE from I_JournalEntry
-                            fields AccountingDocument
-                            where AccountingDocumentHeaderText = @jeno
-                            and CompanyCode = @companycode and FiscalYear = @cmfyear
-                            and PostingDate = @<ls_crdata>-imdate
-                            into @data(jead2).
+                            select from I_JournalEntry as ij
+                            fields AccountingDocument, AccountingDocumentType
+                            where ij~AccountingDocumentHeaderText = @jeno
+*                            and ij~CompanyCode = @companycode and ij~FiscalYear = @cmfyear
+*                            and ij~PostingDate = @<ls_crdata>-imdate
+                            INTO TABLE @data(ltJE).
+                            IF ltje is not INITIAL.
+                                LOOP AT ltje INTO DATA(wa_ltje).
+                                    acctdoc = wa_ltje-AccountingDocument.
+                                ENDLOOP.
+                            ENDIF.
 
                             UPDATE zdt_rplcrnote
                                 SET glposted = '1',
                                  glerror_log = ``,
-                                 dealercrdoc = @jead2
+                                 dealercrdoc = @acctdoc
                                 WHERE comp_code = @companycode AND implant = @plantno AND imfyear = @cmfyear
                                 AND imtype =  @<ls_crdata>-imtype  AND imno = @cmno AND imdealercode = @<ls_crdata>-imdealercode.
 

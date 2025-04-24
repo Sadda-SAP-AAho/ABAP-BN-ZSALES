@@ -1,7 +1,8 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'data definition for credit note'
+@EndUserText.label: 'data definition for credit note GL'
 @Metadata.ignorePropagatedAnnotations: true
-define root view entity zdd_rplcrnote as select from zdt_rplcrnote
+
+define root view entity ZDD_RPLCREDITNOTE as select from zdt_rplcrnote
 //composition of target_data_source_name as _association_name
 {
     key comp_code as CompCode,
@@ -31,6 +32,6 @@ define root view entity zdd_rplcrnote as select from zdt_rplcrnote
     created_by as CreatedBy,
     created_at as CreatedAt,
     last_changed_by as LastChangedBy,
-    last_changed_at as LastChangedAt
-//    _association_name // Make association public
+    last_changed_at as LastChangedAt    
+   // _association_name // Make association public
 }

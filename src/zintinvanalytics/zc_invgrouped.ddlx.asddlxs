@@ -23,11 +23,20 @@ annotate entity ZC_INVGROUPED
     position: 20 
   }, 
   {
-    id: 'idGateEntryLines', 
+    id: 'InvoiceLines', 
     type: #LINEITEM_REFERENCE, 
     label: 'Invoices', 
+    hidden: #(IsSales) ,
     position: 30 , 
     targetElement: '_InvoiceHeaders'
+  } ,
+  {
+    id: 'UnsoldLines', 
+    type: #LINEITEM_REFERENCE, 
+    label: 'Unsold', 
+     hidden: #(IsUnsold) ,
+    position: 40 , 
+    targetElement: '_UnsoldHeaders'
   } ]
     
   @UI.identification: [
@@ -80,70 +89,95 @@ annotate entity ZC_INVGROUPED
   } ]
   @EndUserText.label: 'Order Amount'
    Orderamount;
+   
     @UI.identification: [ {
     position: 40 
   } ]
   @UI.lineItem: [ {
     position: 40 
   } ]
-   @EndUserText.label: 'SO Created'
+   @EndUserText.label: 'SO Created'   
    Socreated;
-    @UI.identification: [ {
-    position: 50 
+   
+   @UI.identification: [ {
+    position: 50 ,
+    label: 'Data Validated'
   } ]
   @UI.lineItem: [ {
-    position: 50 
+    position: 50 ,
+    label: 'Data Validated'
+  } ]
+      @EndUserText.label: 'Data Validated'
+   Datavalidated;
+   
+    @UI.identification: [ {
+    position: 60 
+  } ]
+  @UI.lineItem: [ {
+    position: 60 
   } ]
       @EndUserText.label: 'SO Amount'
    Soamount;
     @UI.identification: [ {
-    position: 60 
+    position: 70 
   } ]
   @UI.lineItem: [ {
-    position: 60 
+    position: 70 
   } ]
       @EndUserText.label: 'Delivery Created'
    Outboundcreated;
     @UI.identification: [ {
-    position: 70 
+    position: 80 
   } ]
   @UI.lineItem: [ {
-    position: 70 
+    position: 80 
   } ]
       @EndUserText.label: 'Order Billed'
    Orderbilled;
     @UI.identification: [ {
-    position: 80 
+    position: 90 
   } ]
   @UI.lineItem: [ {
-    position: 80 
+    position: 90 
   } ]
       @EndUserText.label: 'Billed Amount'
    Billedamount;
-    @UI.identification: [ {
-    position: 90 
+   
+     @UI.identification: [ {
+    position: 100 
   } ]
   @UI.lineItem: [ {
-    position: 90 
+    position: 100 
+  } ]
+      @EndUserText.label: 'PO To Created'
+   Potobecreated;
+   
+   
+    @UI.identification: [ {
+    position: 110 
+  } ]
+  @UI.lineItem: [ {
+    position: 110 
   } ]
       @EndUserText.label: 'PO Created'
    Pocreated;
+   
     @UI.identification: [ {
-    position: 100 
+    position: 120 
   } ]
   @UI.lineItem: [ {
-    position: 100 
+    position: 120 
   } ]
       @EndUserText.label: 'MIGO Created'
    Migocreated;
    
   @EndUserText.label: 'Error Flag'
   @UI.identification: [ {
-    position: 110 , 
+    position: 130 , 
     label: 'Error Flag'
   } ]
   @UI.lineItem: [ {
-    position: 110 , 
+    position: 130 , 
     label: 'Error Flag'
   } ]
   Highlight;

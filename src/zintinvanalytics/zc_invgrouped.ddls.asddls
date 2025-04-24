@@ -16,7 +16,14 @@ define root view entity ZC_INVGROUPED
   Billedamount,
   Pocreated,
   Migocreated,
-  Highlight,  
-  _InvoiceHeaders : redirected to composition child ZC_INV_MST000
+  Datavalidated,
+  Potobecreated,
+  Highlight, 
+  @UI.hidden: true 
+  IsSales,
+  @UI.hidden: true 
+  IsUnsold,
+  _InvoiceHeaders : redirected to composition child ZC_INV_MST000,
+  _UnsoldHeaders   : redirected to composition child ZC_USDATAMST
   
 }

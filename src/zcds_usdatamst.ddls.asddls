@@ -48,7 +48,9 @@ define root view entity ZCDS_USDATAMST as select from zdt_usdatamst1
     created_at as CreatedAt,
     last_changed_by as LastChangedBy,
     last_changed_at as LastChangedAt,
-    ztime as Time    
+    ztime as Time,
+    datavalidated as Datavalidated,
+    cust_code as Cust_code
 //    _association_name // Make association public
 }
 

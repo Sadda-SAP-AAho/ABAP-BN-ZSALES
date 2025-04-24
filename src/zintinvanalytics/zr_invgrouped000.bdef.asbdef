@@ -39,6 +39,8 @@ authorization master( global )
     Billedamount = billedamount;
     Pocreated = pocreated;
     Migocreated = migocreated;
+    Datavalidated = datavalidated;
+    Potobecreated = potobecreated;
     CreatedBy = created_by;
     CreatedAt = created_at;
     LastChangedBy = last_changed_by;
@@ -46,6 +48,7 @@ authorization master( global )
   }
 
   association _InvoiceHeaders {create;}
+  association _UnsoldHeaders {create;}
 }
 
 
@@ -163,122 +166,91 @@ authorization dependent by _Group
   }
 
   association _Group;
-//  association _InvoiceLines {create;}
+}
+
+define behavior for ZR_USDATAMST alias ZrUsdatamst
+implementation in class ZBP_R_USDATAMST unique
+persistent table zdt_usdatamst1
+etag master LastChangedAt
+lock dependent by _Group
+authorization dependent by _Group
+
+{
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt;
+
+  field ( readonly : update )
+   Imdate,
+   Type,
+   CompCode,
+   Plant,
+   Imfyear,
+   Imtype,
+   Imno;
+
+
+  update;
+  delete;
+
+ action clearProcessingUnsold;
+
+  mapping for zdt_usdatamst1
+{
+    CompCode = comp_code;
+    Plant = plant;
+    Imfyear = imfyear;
+    Imtype = imtype;
+    Imno = imno;
+    Imnoseries = imnoseries;
+    Imdate = imdate;
+    Imjobno = imjobno;
+    Imsalesmancode = imsalesmancode;
+    Impartycode = impartycode;
+    Imroutecode = imroutecode;
+    Imremarks = imremarks;
+    Imtotqty = imtotqty;
+    Imvogamt = imvogamt;
+    Imtxbamt = imtxbamt;
+    Imnetamt = imnetamt;
+    Imnetamtro = imnetamtro;
+    Imcrates1 = imcrates1;
+    Imcrates2 = imcrates2;
+    Imrcds = imrcds;
+    Imdeltag = imdeltag;
+    Imusercode = imusercode;
+    Imdfdt = imdfdt;
+    Imdudt = imdudt;
+    Imaid = imaid;
+    Iminno = iminno;
+    Imindate = imindate;
+    Imfgpasstag = imfgpasstag;
+    Imagnstgpno = imagnstgpno;
+    Imagnstgpdate = imagnstgpdate;
+    Imcgstamount = imcgstamount;
+    Imsgstamount = imsgstamount;
+    Imigstamount = imigstamount;
+    ErrorLog = error_log;
+    Remarks = remarks;
+    Processed = processed;
+    ReferenceDoc = reference_doc;
+    Orderamount = orderamount;
+    ReferenceDocDel = reference_doc_del;
+    ReferenceDocInvoice = reference_doc_invoice;
+    Invoiceamount = invoiceamount;
+    Status = status;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+    Ztime = ztime;
+    Datavalidated = datavalidated;
+    CustCode = cust_code;
 }
 
 
-//define behavior for ZR_INVOICEDATATAB1000 alias ZrInvDataTab1
-//persistent table zinvoicedatatab1
-//etag master LastChangedAt
-//lock dependent by _Group
-//authorization master( global )
-//
-//{
-//
-//  field ( readonly )
-//   CreatedBy,
-//   CreatedAt,
-//   LastChangedBy,
-//   LastChangedAt;
-//
-//  field ( readonly : update )
-//   CompCode,
-//   Plant,
-//   Idfyear,
-//   Idtype,
-//   idno,
-//   Idaid;
-//
-//
-//  update;
-//  delete;
-//
-//
-//    mapping for zinvoicedatatab1
-//{
-//  CompCode = comp_code;
-//  Plant = plant;
-//  Idfyear = idfyear;
-//  Idtype = idtype;
-//  Idno = idno;
-//  Idaid = idaid;
-//  Idid = idid;
-//  Idcat = idcat;
-//  Idnoseries = idnoseries;
-//  Iddate = iddate;
-//  Idpartycode = idpartycode;
-//  Idroutecode = idroutecode;
-//  Idsalesmancode = idsalesmancode;
-//  Iddealercode = iddealercode;
-//  Idprdcode = idprdcode;
-//  Idprdasgncode = idprdasgncode;
-//  Idqtybag = idqtybag;
-//  Idprdqty = idprdqty;
-//  Idprdqtyf = idprdqtyf;
-//  Idprdqtyr = idprdqtyr;
-//  Idprdqtyw = idprdqtyw;
-//  Idprdrate = idprdrate;
-//  Idprdnrate = idprdnrate;
-//  Iddiscrate = iddiscrate;
-//  Idprdamt = idprdamt;
-//  Idprdnamt = idprdnamt;
-//  Idremarks = idremarks;
-//  Iduserid = iduserid;
-//  Iddfdt = iddfdt;
-//  Iddudt = iddudt;
-//  Iddelttag = iddelttag;
-//  Idprdacode = idprdacode;
-//  Idnar = idnar;
-//  Idreprate = idreprate;
-//  Idwsb1 = idwsb1;
-//  Idwsb2 = idwsb2;
-//  Idrdc1 = idrdc1;
-//  Idwsb3 = idwsb3;
-//  Idrdc2 = idrdc2;
-//  Idtxbamt = idtxbamt;
-//  Idsono = idsono;
-//  Idsodate = idsodate;
-//  Idtdiscrate = idtdiscrate;
-//  Idtdiscamt = idtdiscamt;
-//  Idorderno = idorderno;
-//  Idorderdate = idorderdate;
-//  Idplantrunhrs = idplantrunhrs;
-//  Idprdbatch = idprdbatch;
-//  Idreprate1 = idreprate1;
-//  Idddealercode = idddealercode;
-//  Idcgstrate = idcgstrate;
-//  Idsgstrate = idsgstrate;
-//  Idigstrate = idigstrate;
-//  Idcgstamount = idcgstamount;
-//  Idsgstamount = idsgstamount;
-//  Idigstamount = idigstamount;
-//  Idprdhsncode = idprdhsncode;
-//  Idtotaldiscamt = idtotaldiscamt;
-//  Idprdqtyss = idprdqtyss;
-//  Idssamount = idssamount;
-//  Idssrate = idssrate;
-//  Imsdtag = imsdtag;
-//  Idforqty = idforqty;
-//  Idfreeqty = idfreeqty;
-//  Idonbillos = idonbillos;
-//  Idoffbillos = idoffbillos;
-//  Idoffbillcrdo = idoffbillcrdo;
-//  Idtgtqty = idtgtqty;
-//  Idmrp = idmrp;
-//  Idver = idver;
-//  Idprdstock = idprdstock;
-//  Idprdcodefree = idprdcodefree;
-//  Idrepldiscamt = idrepldiscamt;
-//  Idvehcodesale = idvehcodesale;
-//  ErrorLog = error_log;
-//  Remarks = remarks;
-//  Processed = processed;
-//  ReferenceDoc = reference_doc;
-//  CreatedBy = created_by;
-//  CreatedAt = created_at;
-//  LastChangedAt = last_changed_at;
-//  LastChangedBy = last_changed_by;
-//}
-//
-//  association _InvoiceHeader ;
-//}
+  association _Group;
+}
