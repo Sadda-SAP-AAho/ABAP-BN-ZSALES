@@ -29,10 +29,827 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema Namespace="zui_inv_grouped_o2_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="cds_zui_inv_grouped_o2.ExpenseMstType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="General Information" />
+                            <PropertyValue Property="ID" String="GeneralInfo" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Projection Entity for ZCONTROLSHEET" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="GateEntryNo" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="GateEntryNo" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                    <Annotation Term="Core.Messages">
+                        <Collection>
+                            <Record>
+                                <PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory" />
+                                <PropertyValue Property="severity" String="error" />
+                            </Record>
+                        </Collection>
+                    </Annotation>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="GateEntryNo" />
+                            <PropertyValue Property="Value" Path="GateEntryNo" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Vehiclenum" />
+                            <PropertyValue Property="Value" Path="Vehiclenum" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Gpdate" />
+                            <PropertyValue Property="Value" Path="Gpdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Controlsheet" />
+                            <PropertyValue Property="Value" Path="Controlsheet" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Toll" />
+                            <PropertyValue Property="Value" Path="Toll" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Routeexp" />
+                            <PropertyValue Property="Value" Path="Routeexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cngexp" />
+                            <PropertyValue Property="Value" Path="Cngexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Other" />
+                            <PropertyValue Property="Value" Path="Other" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Dieselexp" />
+                            <PropertyValue Property="Value" Path="Dieselexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Repair" />
+                            <PropertyValue Property="Value" Path="Repair" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Plant" />
+                            <PropertyValue Property="Value" Path="Plant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CostCenter" />
+                            <PropertyValue Property="Value" Path="CostCenter" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="SalesPerson" />
+                            <PropertyValue Property="Value" Path="SalesPerson" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Glposted" />
+                            <PropertyValue Property="Value" Path="Glposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Flag" />
+                            <PropertyValue Property="Value" Path="Highlight" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedAt" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="GateEntryNo" />
+                            <PropertyValue Property="Value" Path="GateEntryNo" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Vehiclenum" />
+                            <PropertyValue Property="Value" Path="Vehiclenum" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Gpdate" />
+                            <PropertyValue Property="Value" Path="Gpdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Controlsheet" />
+                            <PropertyValue Property="Value" Path="Controlsheet" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Toll" />
+                            <PropertyValue Property="Value" Path="Toll" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Routeexp" />
+                            <PropertyValue Property="Value" Path="Routeexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cngexp" />
+                            <PropertyValue Property="Value" Path="Cngexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Other" />
+                            <PropertyValue Property="Value" Path="Other" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Dieselexp" />
+                            <PropertyValue Property="Value" Path="Dieselexp" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Repair" />
+                            <PropertyValue Property="Value" Path="Repair" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Plant" />
+                            <PropertyValue Property="Value" Path="Plant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CostCenter" />
+                            <PropertyValue Property="Value" Path="CostCenter" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="SalesPerson" />
+                            <PropertyValue Property="Value" Path="SalesPerson" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Glposted" />
+                            <PropertyValue Property="Value" Path="Glposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Flag" />
+                            <PropertyValue Property="Value" Path="Highlight" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedAt" />
+                        </Record>
+                    </Collection>
+                    <Annotation Term="UI.Criticality" Path="Highlight" />
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>GateEntryNo</PropertyPath>
+                        <PropertyPath>Vehiclenum</PropertyPath>
+                        <PropertyPath>CompCode</PropertyPath>
+                        <PropertyPath>Imfyear</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.CratesMstType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="General Information" />
+                            <PropertyValue Property="ID" String="GeneralInfo" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Projection Entity for ZR_CRATESDATA1000" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Cmno" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Cmno" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                    <Annotation Term="Core.Messages">
+                        <Collection>
+                            <Record>
+                                <PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory" />
+                                <PropertyValue Property="severity" String="error" />
+                            </Record>
+                        </Collection>
+                    </Annotation>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmno" />
+                            <PropertyValue Property="Value" Path="Cmno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Plant" />
+                            <PropertyValue Property="Value" Path="Plant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmfyear" />
+                            <PropertyValue Property="Value" Path="Cmfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmtype" />
+                            <PropertyValue Property="Value" Path="Cmtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmaid" />
+                            <PropertyValue Property="Value" Path="Cmaid" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmnoseries" />
+                            <PropertyValue Property="Value" Path="Cmnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmdate" />
+                            <PropertyValue Property="Value" Path="Cmdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsalesmancode" />
+                            <PropertyValue Property="Value" Path="Cmsalesmancode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsalesmancodeorg" />
+                            <PropertyValue Property="Value" Path="Cmsalesmancodeorg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates1" />
+                            <PropertyValue Property="Value" Path="Cmcrates1" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates2" />
+                            <PropertyValue Property="Value" Path="Cmcrates2" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmremarks" />
+                            <PropertyValue Property="Value" Path="Cmremarks" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmdeltag" />
+                            <PropertyValue Property="Value" Path="Cmdeltag" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmusercode" />
+                            <PropertyValue Property="Value" Path="Cmusercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmfeddt" />
+                            <PropertyValue Property="Value" Path="Cmfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmupddt" />
+                            <PropertyValue Property="Value" Path="Cmupddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates11" />
+                            <PropertyValue Property="Value" Path="Cmcrates11" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates21" />
+                            <PropertyValue Property="Value" Path="Cmcrates21" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmrefno" />
+                            <PropertyValue Property="Value" Path="Cmrefno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmroutecd" />
+                            <PropertyValue Property="Value" Path="Cmroutecd" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates3" />
+                            <PropertyValue Property="Value" Path="Cmcrates3" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates4" />
+                            <PropertyValue Property="Value" Path="Cmcrates4" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmddealercode" />
+                            <PropertyValue Property="Value" Path="Cmddealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmgpdate" />
+                            <PropertyValue Property="Value" Path="Cmgpdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmseries" />
+                            <PropertyValue Property="Value" Path="Cmseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates1d" />
+                            <PropertyValue Property="Value" Path="Cmcrates1d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates2d" />
+                            <PropertyValue Property="Value" Path="Cmcrates2d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates3d" />
+                            <PropertyValue Property="Value" Path="Cmcrates3d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates4d" />
+                            <PropertyValue Property="Value" Path="Cmcrates4d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmupuser" />
+                            <PropertyValue Property="Value" Path="Cmupuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate1" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate1" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate2" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate2" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate3" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate3" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate4" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate4" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsecuritytype" />
+                            <PropertyValue Property="Value" Path="Cmsecuritytype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcmptype" />
+                            <PropertyValue Property="Value" Path="Cmcmptype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ErrorLog" />
+                            <PropertyValue Property="Value" Path="ErrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Remarks" />
+                            <PropertyValue Property="Value" Path="Remarks" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ReferenceDoc" />
+                            <PropertyValue Property="Value" Path="ReferenceDoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Movementposted" />
+                            <PropertyValue Property="Value" Path="Movementposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmno" />
+                            <PropertyValue Property="Value" Path="Cmno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Plant" />
+                            <PropertyValue Property="Value" Path="Plant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmfyear" />
+                            <PropertyValue Property="Value" Path="Cmfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmtype" />
+                            <PropertyValue Property="Value" Path="Cmtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmaid" />
+                            <PropertyValue Property="Value" Path="Cmaid" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmnoseries" />
+                            <PropertyValue Property="Value" Path="Cmnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmdate" />
+                            <PropertyValue Property="Value" Path="Cmdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsalesmancode" />
+                            <PropertyValue Property="Value" Path="Cmsalesmancode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsalesmancodeorg" />
+                            <PropertyValue Property="Value" Path="Cmsalesmancodeorg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates1" />
+                            <PropertyValue Property="Value" Path="Cmcrates1" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates2" />
+                            <PropertyValue Property="Value" Path="Cmcrates2" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmremarks" />
+                            <PropertyValue Property="Value" Path="Cmremarks" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmdeltag" />
+                            <PropertyValue Property="Value" Path="Cmdeltag" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmusercode" />
+                            <PropertyValue Property="Value" Path="Cmusercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmfeddt" />
+                            <PropertyValue Property="Value" Path="Cmfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmupddt" />
+                            <PropertyValue Property="Value" Path="Cmupddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates11" />
+                            <PropertyValue Property="Value" Path="Cmcrates11" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates21" />
+                            <PropertyValue Property="Value" Path="Cmcrates21" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmrefno" />
+                            <PropertyValue Property="Value" Path="Cmrefno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmroutecd" />
+                            <PropertyValue Property="Value" Path="Cmroutecd" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates3" />
+                            <PropertyValue Property="Value" Path="Cmcrates3" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates4" />
+                            <PropertyValue Property="Value" Path="Cmcrates4" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmddealercode" />
+                            <PropertyValue Property="Value" Path="Cmddealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmgpno" />
+                            <PropertyValue Property="Value" Path="Cmgpno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmgpdate" />
+                            <PropertyValue Property="Value" Path="Cmgpdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmseries" />
+                            <PropertyValue Property="Value" Path="Cmseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates1d" />
+                            <PropertyValue Property="Value" Path="Cmcrates1d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates2d" />
+                            <PropertyValue Property="Value" Path="Cmcrates2d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates3d" />
+                            <PropertyValue Property="Value" Path="Cmcrates3d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcrates4d" />
+                            <PropertyValue Property="Value" Path="Cmcrates4d" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmupuser" />
+                            <PropertyValue Property="Value" Path="Cmupuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate1" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate1" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate2" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate2" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate3" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate3" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcratesrate4" />
+                            <PropertyValue Property="Value" Path="Cmcratesrate4" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmsecuritytype" />
+                            <PropertyValue Property="Value" Path="Cmsecuritytype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Cmcmptype" />
+                            <PropertyValue Property="Value" Path="Cmcmptype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ErrorLog" />
+                            <PropertyValue Property="Value" Path="ErrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Remarks" />
+                            <PropertyValue Property="Value" Path="Remarks" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ReferenceDoc" />
+                            <PropertyValue Property="Value" Path="ReferenceDoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Movementposted" />
+                            <PropertyValue Property="Value" Path="Movementposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                    <Annotation Term="UI.Criticality" Path="Highlight" />
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Cmno</PropertyPath>
+                        <PropertyPath>CompCode</PropertyPath>
+                        <PropertyPath>Plant</PropertyPath>
+                        <PropertyPath>Cmfyear</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.CreditNoteMstType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="General Information" />
+                            <PropertyValue Property="ID" String="GeneralInfo" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Projection Entity for ZR_CREDITNOTE" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Imfyear" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Imfyear" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                    <Annotation Term="Core.Messages">
+                        <Collection>
+                            <Record>
+                                <PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory" />
+                                <PropertyValue Property="severity" String="error" />
+                            </Record>
+                        </Collection>
+                    </Annotation>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imtype" />
+                            <PropertyValue Property="Value" Path="Imtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imnoseries" />
+                            <PropertyValue Property="Value" Path="Imnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imno" />
+                            <PropertyValue Property="Value" Path="Imno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdealercode" />
+                            <PropertyValue Property="Value" Path="Imdealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Implant" />
+                            <PropertyValue Property="Value" Path="Implant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Location" />
+                            <PropertyValue Property="Value" Path="Location" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdate" />
+                            <PropertyValue Property="Value" Path="Imdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdoccatg" />
+                            <PropertyValue Property="Value" Path="Imdoccatg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imcramt" />
+                            <PropertyValue Property="Value" Path="Imcramt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadcode" />
+                            <PropertyValue Property="Value" Path="Imbreadcode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrappercode" />
+                            <PropertyValue Property="Value" Path="Imwrappercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadwt" />
+                            <PropertyValue Property="Value" Path="Imbreadwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrapperwt" />
+                            <PropertyValue Property="Value" Path="Imwrapperwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfeddt" />
+                            <PropertyValue Property="Value" Path="Imfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfebuser" />
+                            <PropertyValue Property="Value" Path="Imfebuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imstatus" />
+                            <PropertyValue Property="Value" Path="Imstatus" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Log" />
+                            <PropertyValue Property="Value" Path="GlerrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Processed" />
+                            <PropertyValue Property="Value" Path="Glposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Accounting Doc. No." />
+                            <PropertyValue Property="Value" Path="Dealercrdoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imtype" />
+                            <PropertyValue Property="Value" Path="Imtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imnoseries" />
+                            <PropertyValue Property="Value" Path="Imnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imno" />
+                            <PropertyValue Property="Value" Path="Imno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdealercode" />
+                            <PropertyValue Property="Value" Path="Imdealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Implant" />
+                            <PropertyValue Property="Value" Path="Implant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Location" />
+                            <PropertyValue Property="Value" Path="Location" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdate" />
+                            <PropertyValue Property="Value" Path="Imdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdoccatg" />
+                            <PropertyValue Property="Value" Path="Imdoccatg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imcramt" />
+                            <PropertyValue Property="Value" Path="Imcramt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadcode" />
+                            <PropertyValue Property="Value" Path="Imbreadcode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrappercode" />
+                            <PropertyValue Property="Value" Path="Imwrappercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadwt" />
+                            <PropertyValue Property="Value" Path="Imbreadwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrapperwt" />
+                            <PropertyValue Property="Value" Path="Imwrapperwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfeddt" />
+                            <PropertyValue Property="Value" Path="Imfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfebuser" />
+                            <PropertyValue Property="Value" Path="Imfebuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imstatus" />
+                            <PropertyValue Property="Value" Path="Imstatus" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Log" />
+                            <PropertyValue Property="Value" Path="GlerrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Processed" />
+                            <PropertyValue Property="Value" Path="Glposted" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Accounting Doc. No." />
+                            <PropertyValue Property="Value" Path="Dealercrdoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                    <Annotation Term="UI.Criticality" Path="Highlight" />
+                </Annotation>
+            </Annotations>
             <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsSales">
                 <Annotation Term="UI.Hidden" />
             </Annotations>
             <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsUnsold">
+                <Annotation Term="UI.Hidden" />
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsExpense">
+                <Annotation Term="UI.Hidden" />
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsCrates">
+                <Annotation Term="UI.Hidden" />
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsScrap">
+                <Annotation Term="UI.Hidden" />
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType/IsCrn">
                 <Annotation Term="UI.Hidden" />
             </Annotations>
             <Annotations Target="cds_zui_inv_grouped_o2.InvoiceGroupedType">
@@ -62,6 +879,30 @@
                             <PropertyValue Property="ID" String="UnsoldLines" />
                             <PropertyValue Property="Target" AnnotationPath="to_UnsoldHeaders/@UI.LineItem" />
                             <Annotation Term="UI.Hidden" Path="IsUnsold" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Expenses" />
+                            <PropertyValue Property="ID" String="ExpenseLines" />
+                            <PropertyValue Property="Target" AnnotationPath="to_CtrlHeaders/@UI.LineItem" />
+                            <Annotation Term="UI.Hidden" Path="IsExpense" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Credit Notes" />
+                            <PropertyValue Property="ID" String="CRNLines" />
+                            <PropertyValue Property="Target" AnnotationPath="to_CRNHeaders/@UI.LineItem" />
+                            <Annotation Term="UI.Hidden" Path="IsCrn" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Scraps" />
+                            <PropertyValue Property="ID" String="ScrapLines" />
+                            <PropertyValue Property="Target" AnnotationPath="to_ScrapHeaders/@UI.LineItem" />
+                            <Annotation Term="UI.Hidden" Path="IsScrap" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Crates" />
+                            <PropertyValue Property="ID" String="CratesLines" />
+                            <PropertyValue Property="Target" AnnotationPath="to_CratesHeaders/@UI.LineItem" />
+                            <Annotation Term="UI.Hidden" Path="IsCrates" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -101,6 +942,9 @@
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Orderamount" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Processed" />
                         </Record>
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Socreated" />
@@ -157,6 +1001,9 @@
                             <PropertyValue Property="Value" Path="Orderamount" />
                         </Record>
                         <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Processed" />
+                        </Record>
+                        <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="Socreated" />
                         </Record>
                         <Record Type="UI.DataField">
@@ -194,6 +1041,7 @@
                 <Annotation Term="UI.SelectionFields">
                     <Collection>
                         <PropertyPath>Orderdate</PropertyPath>
+                        <PropertyPath>Type</PropertyPath>
                     </Collection>
                 </Annotation>
             </Annotations>
@@ -1093,6 +1941,223 @@
                         <PropertyPath>Imno</PropertyPath>
                         <PropertyPath>Imdate</PropertyPath>
                     </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_zui_inv_grouped_o2.ScrapMstType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="General Information" />
+                            <PropertyValue Property="ID" String="GeneralInfo" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Projection Entity for ZR_SCRAP" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Imfyear" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Imfyear" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                    <Annotation Term="Core.Messages">
+                        <Collection>
+                            <Record>
+                                <PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory" />
+                                <PropertyValue Property="severity" String="error" />
+                            </Record>
+                        </Collection>
+                    </Annotation>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imtype" />
+                            <PropertyValue Property="Value" Path="Imtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imnoseries" />
+                            <PropertyValue Property="Value" Path="Imnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imno" />
+                            <PropertyValue Property="Value" Path="Imno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdealercode" />
+                            <PropertyValue Property="Value" Path="Imdealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Implant" />
+                            <PropertyValue Property="Value" Path="Implant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Location" />
+                            <PropertyValue Property="Value" Path="Location" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdate" />
+                            <PropertyValue Property="Value" Path="Imdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdoccatg" />
+                            <PropertyValue Property="Value" Path="Imdoccatg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imcramt" />
+                            <PropertyValue Property="Value" Path="Imcramt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadcode" />
+                            <PropertyValue Property="Value" Path="Imbreadcode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrappercode" />
+                            <PropertyValue Property="Value" Path="Imwrappercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadwt" />
+                            <PropertyValue Property="Value" Path="Imbreadwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrapperwt" />
+                            <PropertyValue Property="Value" Path="Imwrapperwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfeddt" />
+                            <PropertyValue Property="Value" Path="Imfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfebuser" />
+                            <PropertyValue Property="Value" Path="Imfebuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imstatus" />
+                            <PropertyValue Property="Value" Path="Imstatus" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Log" />
+                            <PropertyValue Property="Value" Path="ErrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Processed" />
+                            <PropertyValue Property="Value" Path="Processed" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Material Doc. No." />
+                            <PropertyValue Property="Value" Path="Scrapindoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfyear" />
+                            <PropertyValue Property="Value" Path="Imfyear" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imtype" />
+                            <PropertyValue Property="Value" Path="Imtype" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imnoseries" />
+                            <PropertyValue Property="Value" Path="Imnoseries" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="CompCode" />
+                            <PropertyValue Property="Value" Path="CompCode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imno" />
+                            <PropertyValue Property="Value" Path="Imno" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdealercode" />
+                            <PropertyValue Property="Value" Path="Imdealercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Implant" />
+                            <PropertyValue Property="Value" Path="Implant" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Location" />
+                            <PropertyValue Property="Value" Path="Location" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdate" />
+                            <PropertyValue Property="Value" Path="Imdate" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imdoccatg" />
+                            <PropertyValue Property="Value" Path="Imdoccatg" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imcramt" />
+                            <PropertyValue Property="Value" Path="Imcramt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadcode" />
+                            <PropertyValue Property="Value" Path="Imbreadcode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrappercode" />
+                            <PropertyValue Property="Value" Path="Imwrappercode" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imbreadwt" />
+                            <PropertyValue Property="Value" Path="Imbreadwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imwrapperwt" />
+                            <PropertyValue Property="Value" Path="Imwrapperwt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfeddt" />
+                            <PropertyValue Property="Value" Path="Imfeddt" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imfebuser" />
+                            <PropertyValue Property="Value" Path="Imfebuser" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Imstatus" />
+                            <PropertyValue Property="Value" Path="Imstatus" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Error Log" />
+                            <PropertyValue Property="Value" Path="ErrorLog" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Processed" />
+                            <PropertyValue Property="Value" Path="Processed" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Material Doc. No." />
+                            <PropertyValue Property="Value" Path="Scrapindoc" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedBy" />
+                        </Record>
+                    </Collection>
+                    <Annotation Term="UI.Criticality" Path="Highlight" />
                 </Annotation>
             </Annotations>
             <Annotations Target="cds_zui_inv_grouped_o2.UnsoldDataTabType/Idnoseries">

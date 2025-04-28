@@ -184,6 +184,41 @@
                       "selectAll": true,
                       "type": "GridTable"
                     }
+                  },
+                  "ExpenseLines": {
+                    "tableSettings": {
+                      "multiSelect": true,
+                      "selectAll": true,
+                      "type": "GridTable"
+                    }
+                  },
+                  "CratesLines": {
+                    "tableSettings": {
+                      "multiSelect": true,
+                      "selectAll": true,
+                      "type": "GridTable"
+                    }
+                  },
+                  "ScrapLines": {
+                    "tableSettings": {
+                      "multiSelect": true,
+                      "selectAll": true,
+                      "type": "GridTable"
+                    }
+                  },
+                  "CRNLines": {
+                    "tableSettings": {
+                      "multiSelect": true,
+                      "selectAll": true,
+                      "type": "GridTable"
+                    }
+                  },
+                  "ReceiptLines": {
+                    "tableSettings": {
+                      "multiSelect": true,
+                      "selectAll": true,
+                      "type": "GridTable"
+                    }
                   }
                 }
               }
